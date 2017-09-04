@@ -6,7 +6,6 @@ class GuiPitchEgTab : public Component, public SliderListener
 {
 public:
     GuiPitchEgTab (SynthSound* pSynthSound);
-    ~GuiPitchEgTab();
 
     void paint (Graphics& g) override;
     void resized() override;
@@ -17,23 +16,10 @@ public:
 private:
 	SynthSound* pSound;
 
-    ScopedPointer<Label> attackLabel1;
-    ScopedPointer<Slider> attackSlider1;
-    //ScopedPointer<Label> decayLabel1;
-    //ScopedPointer<Slider> decaySlider1;
-    ScopedPointer<Label> sustainLabel1;
-    ScopedPointer<Slider> sustainSlider1;
-    ScopedPointer<Label> releaseLabel1;
-    ScopedPointer<Slider> releaseSlider1;
-
-	ScopedPointer<Label> attackLabel2;
-	ScopedPointer<Slider> attackSlider2;
-	//ScopedPointer<Label> decayLabel2;
-	//ScopedPointer<Slider> decaySlider2;
-	ScopedPointer<Label> sustainLabel2;
-	ScopedPointer<Slider> sustainSlider2;
-	ScopedPointer<Label> releaseLabel2;
-	ScopedPointer<Slider> releaseSlider2;
+    Label attackLabel1, sustainLabel1, releaseLabel1;
+    Slider attackSlider1, sustainSlider1, releaseSlider1;
+    Label attackLabel2, sustainLabel2, releaseLabel2;
+    Slider attackSlider2, sustainSlider2, releaseSlider2;
 
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (GuiPitchEgTab)
 };

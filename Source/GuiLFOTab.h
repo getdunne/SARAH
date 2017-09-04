@@ -8,7 +8,6 @@ class GuiLFOTab : public Component,
 {
 public:
     GuiLFOTab (SynthSound* pSynthSound);
-    ~GuiLFOTab();
 
     void paint (Graphics& g) override;
     void resized() override;
@@ -20,19 +19,12 @@ public:
 private:
 	SynthSound* pSound;
 
-    ScopedPointer<Label> wfLabel1;
-    ScopedPointer<ComboBox> waveformCB1;
-    ScopedPointer<Label> freqLabel1;
-    ScopedPointer<Slider> freqSlider1;
-    ScopedPointer<Label> amountLabel1;
-    ScopedPointer<Slider> amountSlider1;
-
-	ScopedPointer<Label> wfLabel2;
-	ScopedPointer<ComboBox> waveformCB2;
-	ScopedPointer<Label> freqLabel2;
-	ScopedPointer<Slider> freqSlider2;
-	ScopedPointer<Label> amountLabel2;
-	ScopedPointer<Slider> amountSlider2;
+    Label wfLabel1, freqLabel1, amountLabel1;
+    ComboBox waveformCB1;
+    Slider freqSlider1, amountSlider1;
+    Label wfLabel2, freqLabel2, amountLabel2;
+    ComboBox waveformCB2;
+    Slider freqSlider2, amountSlider2;
 
 	JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (GuiLFOTab)
 };

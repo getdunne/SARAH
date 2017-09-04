@@ -21,13 +21,12 @@ public:
 
 private:
     ScopedPointer<TabbedComponent> tabbedComponent;
-	GuiMainTab* pMainTab;
-	GuiOscTab* pOscTab;
-	GuiAmpEgTab* pAmpEgTab;
-	GuiFilterTab* pFilter1Tab;
-	GuiFilterTab* pFilter2Tab;
-	GuiPitchEgTab* pPitchEgTab;
-	GuiLFOTab* pLFOTab;
+	GuiMainTab mainTab;
+	GuiOscTab oscTab;
+	GuiAmpEgTab ampEgTab;
+	GuiFilterTab filter1Tab, filter2Tab;
+	GuiPitchEgTab pitchEgTab;
+	GuiLFOTab lfoTab;
 
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (GuiTabs)
 };

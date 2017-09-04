@@ -1,33 +1,28 @@
 #include "GuiTabs.h"
 
 GuiTabs::GuiTabs (SynthSound* pSynthSound)
+    : mainTab(pSynthSound)
+    , oscTab(pSynthSound)
+    , ampEgTab(pSynthSound)
+    , filter1Tab(pSynthSound, 0)
+    , filter2Tab(pSynthSound, 1)
+    , pitchEgTab(pSynthSound)
+    , lfoTab(pSynthSound)
 {
-	pMainTab = new GuiMainTab(pSynthSound);
-	pOscTab = new GuiOscTab(pSynthSound);
-	pAmpEgTab = new GuiAmpEgTab(pSynthSound);
-	pFilter1Tab = new GuiFilterTab(pSynthSound, 0);
-	pFilter2Tab = new GuiFilterTab(pSynthSound, 1);
-	pPitchEgTab = new GuiPitchEgTab(pSynthSound);
-	pLFOTab = new GuiLFOTab(pSynthSound);
-
     addAndMakeVisible (tabbedComponent = new TabbedComponent (TabbedButtonBar::TabsAtTop));
     tabbedComponent->setTabBarDepth (32);
-	tabbedComponent->addTab(TRANS("Main"), Colours::lightgrey, pMainTab, true);
-    tabbedComponent->addTab (TRANS("Osc"), Colours::lightgrey, pOscTab, true);
-	tabbedComponent->addTab(TRANS("Amp"), Colours::lightgrey, pAmpEgTab, true);
-	tabbedComponent->addTab(TRANS("Flt1"), Colours::lightgrey, pFilter1Tab, true);
-	tabbedComponent->addTab(TRANS("Flt2"), Colours::lightgrey, pFilter2Tab, true);
-	tabbedComponent->addTab(TRANS("P.EG"), Colours::lightgrey, pPitchEgTab, true);
-	tabbedComponent->addTab(TRANS("LFOs"), Colours::lightgrey, pLFOTab, true);
+	tabbedComponent->addTab(TRANS("Main"), Colours::lightgrey, &mainTab, true);
+    tabbedComponent->addTab(TRANS("Osc"), Colours::lightgrey, &oscTab, true);
+	tabbedComponent->addTab(TRANS("Amp"), Colours::lightgrey, &ampEgTab, true);
+	tabbedComponent->addTab(TRANS("Flt1"), Colours::lightgrey, &filter1Tab, true);
+	tabbedComponent->addTab(TRANS("Flt2"), Colours::lightgrey, &filter2Tab, true);
+	tabbedComponent->addTab(TRANS("P.EG"), Colours::lightgrey, &pitchEgTab, true);
+	tabbedComponent->addTab(TRANS("LFOs"), Colours::lightgrey, &lfoTab, true);
 	tabbedComponent->setCurrentTabIndex(0);
-
-    setSize (400, 300);
 }
 
 GuiTabs::~GuiTabs()
 {
-	// tabbedComponent will take care of deleting our tab objects
-    tabbedComponent = nullptr;
 }
 
 //==============================================================================
@@ -43,11 +38,11 @@ void GuiTabs::resized()
 
 void GuiTabs::notify()
 {
-	pMainTab->notify();
-	pOscTab->notify();
-	pAmpEgTab->notify();
-	pFilter1Tab->notify();
-	pFilter2Tab->notify();
-	pPitchEgTab->notify();
-	pLFOTab->notify();
+	mainTab.notify();
+	oscTab.notify();
+	ampEgTab.notify();
+	filter1Tab.notify();
+	filter2Tab.notify();
+	pitchEgTab.notify();
+	lfoTab.notify();
 }
