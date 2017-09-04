@@ -1,7 +1,7 @@
 #include "GuiLFOTab.h"
 
 GuiLFOTab::GuiLFOTab (SynthSound* pSynthSound)
-	: pSound(pSynthSound)
+    : pSound(pSynthSound)
     , wfLabel1("waveform label1", TRANS("Pitch LFO"))
     , freqLabel1("freq label1", TRANS("Frequency (Hz)"))
     , amountLabel1("amount label1", TRANS("Amount (cents)"))
@@ -57,7 +57,7 @@ GuiLFOTab::GuiLFOTab (SynthSound* pSynthSound)
     initSlider(freqSlider2); freqSlider2.setRange(0.1, 10.0, 0);
     initSlider(amountSlider2); amountSlider2.setRange(0, 100, 0);
 
-	notify();
+    notify();
 }
 
 //==============================================================================
@@ -68,83 +68,83 @@ void GuiLFOTab::paint (Graphics& g)
 
 void GuiLFOTab::resized()
 {
-	const int labelLeft = 16;
-	const int controlLeft = 144;
-	const int labelWidth = 120;
-	const int cboxWidth = 150;
-	const int sliderWidth = 344;
-	const int controlHeight = 24;
-	const int gapHeight = 8;
+    const int labelLeft = 16;
+    const int controlLeft = 144;
+    const int labelWidth = 120;
+    const int cboxWidth = 150;
+    const int sliderWidth = 344;
+    const int controlHeight = 24;
+    const int gapHeight = 8;
 
-	int top = 20;
+    int top = 20;
     wfLabel1.setBounds (labelLeft, top, labelWidth, controlHeight);
     waveformCB1.setBounds (controlLeft, top, cboxWidth, controlHeight);
-	top += controlHeight + gapHeight;
+    top += controlHeight + gapHeight;
     freqLabel1.setBounds (labelLeft, top, labelWidth, controlHeight);
     freqSlider1.setBounds (controlLeft, top, sliderWidth, controlHeight);
-	top += controlHeight + gapHeight;
-	amountLabel1.setBounds (labelLeft, top, labelWidth, controlHeight);
+    top += controlHeight + gapHeight;
+    amountLabel1.setBounds (labelLeft, top, labelWidth, controlHeight);
     amountSlider1.setBounds (controlLeft, top, sliderWidth, controlHeight);
 
-	top += controlHeight + 5 * gapHeight;
-	wfLabel2.setBounds(labelLeft, top, labelWidth, controlHeight);
-	waveformCB2.setBounds(controlLeft, top, cboxWidth, controlHeight);
-	top += controlHeight + gapHeight;
-	freqLabel2.setBounds(labelLeft, top, labelWidth, controlHeight);
-	freqSlider2.setBounds(controlLeft, top, sliderWidth, controlHeight);
-	top += controlHeight + gapHeight;
-	amountLabel2.setBounds(labelLeft, top, labelWidth, controlHeight);
-	amountSlider2.setBounds(controlLeft, top, sliderWidth, controlHeight);
+    top += controlHeight + 5 * gapHeight;
+    wfLabel2.setBounds(labelLeft, top, labelWidth, controlHeight);
+    waveformCB2.setBounds(controlLeft, top, cboxWidth, controlHeight);
+    top += controlHeight + gapHeight;
+    freqLabel2.setBounds(labelLeft, top, labelWidth, controlHeight);
+    freqSlider2.setBounds(controlLeft, top, sliderWidth, controlHeight);
+    top += controlHeight + gapHeight;
+    amountLabel2.setBounds(labelLeft, top, labelWidth, controlHeight);
+    amountSlider2.setBounds(controlLeft, top, sliderWidth, controlHeight);
 }
 
 void GuiLFOTab::comboBoxChanged (ComboBox* comboBoxThatHasChanged)
 {
-	SynthOscillatorBase::WaveformEnum wf = (SynthOscillatorBase::WaveformEnum)
-		(SynthOscillatorBase::kSine + comboBoxThatHasChanged->getSelectedItemIndex());
-	SynthParameters* pParams = pSound->pParams;
-	if (comboBoxThatHasChanged == &waveformCB1)
+    SynthOscillatorBase::WaveformEnum wf = (SynthOscillatorBase::WaveformEnum)
+        (SynthOscillatorBase::kSine + comboBoxThatHasChanged->getSelectedItemIndex());
+    SynthParameters* pParams = pSound->pParams;
+    if (comboBoxThatHasChanged == &waveformCB1)
     {
-		pParams->pitchLFO.waveform = wf;
+        pParams->pitchLFO.waveform = wf;
     }
-	else if (comboBoxThatHasChanged == &waveformCB2)
-	{
-		pParams->filterLFO.waveform = wf;
-	}
-	pSound->parameterChanged();
+    else if (comboBoxThatHasChanged == &waveformCB2)
+    {
+        pParams->filterLFO.waveform = wf;
+    }
+    pSound->parameterChanged();
 }
 
 void GuiLFOTab::sliderValueChanged (Slider* sliderThatWasMoved)
 {
-	double value = sliderThatWasMoved->getValue();
-	SynthParameters* pParams = pSound->pParams;
-	if (sliderThatWasMoved == &freqSlider1)
+    double value = sliderThatWasMoved->getValue();
+    SynthParameters* pParams = pSound->pParams;
+    if (sliderThatWasMoved == &freqSlider1)
     {
-		pParams->pitchLFO.freqHz = value;
+        pParams->pitchLFO.freqHz = value;
     }
-	else if (sliderThatWasMoved == &freqSlider2)
-	{
-		pParams->filterLFO.freqHz = value;
-	}
-	else if (sliderThatWasMoved == &amountSlider1)
+    else if (sliderThatWasMoved == &freqSlider2)
     {
-		pParams->pitchLFO.amount = value;	// cents
-	}
-	else if (sliderThatWasMoved == &amountSlider2)
-	{
-		pParams->filterLFO.amount = 0.01 * value;	// percent -> fraction
-	}
-	pSound->parameterChanged();
+        pParams->filterLFO.freqHz = value;
+    }
+    else if (sliderThatWasMoved == &amountSlider1)
+    {
+        pParams->pitchLFO.amount = value;    // cents
+    }
+    else if (sliderThatWasMoved == &amountSlider2)
+    {
+        pParams->filterLFO.amount = 0.01 * value;    // percent -> fraction
+    }
+    pSound->parameterChanged();
 }
 
 void GuiLFOTab::notify()
 {
-	SynthParameters* pParams = pSound->pParams;
+    SynthParameters* pParams = pSound->pParams;
 
-	waveformCB1.setSelectedItemIndex(int(pParams->pitchLFO.waveform - SynthOscillatorBase::kSine));
-	freqSlider1.setValue(pParams->pitchLFO.freqHz);
-	amountSlider1.setValue(pParams->pitchLFO.amount);
+    waveformCB1.setSelectedItemIndex(int(pParams->pitchLFO.waveform - SynthOscillatorBase::kSine));
+    freqSlider1.setValue(pParams->pitchLFO.freqHz);
+    amountSlider1.setValue(pParams->pitchLFO.amount);
 
-	waveformCB2.setSelectedItemIndex(int(pParams->filterLFO.waveform - SynthOscillatorBase::kSine));
-	freqSlider2.setValue(pParams->filterLFO.freqHz);
-	amountSlider2.setValue(100.0 * pParams->filterLFO.amount);	// fraction -> percent
+    waveformCB2.setSelectedItemIndex(int(pParams->filterLFO.waveform - SynthOscillatorBase::kSine));
+    freqSlider2.setValue(pParams->filterLFO.freqHz);
+    amountSlider2.setValue(100.0 * pParams->filterLFO.amount);    // fraction -> percent
 }

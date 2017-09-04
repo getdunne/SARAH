@@ -17,16 +17,16 @@ public:
     void paint (Graphics& g) override;
     void resized() override;
 
-	void notify();
+    void notify();
 
 private:
     ScopedPointer<TabbedComponent> tabbedComponent;
-	GuiMainTab mainTab;
-	GuiOscTab oscTab;
-	GuiAmpEgTab ampEgTab;
-	GuiFilterTab filter1Tab, filter2Tab;
-	GuiPitchEgTab pitchEgTab;
-	GuiLFOTab lfoTab;
+    GuiMainTab mainTab;
+    GuiOscTab oscTab;
+    GuiAmpEgTab ampEgTab;
+    GuiFilterTab filter1Tab, filter2Tab;
+    GuiPitchEgTab pitchEgTab;
+    GuiLFOTab lfoTab;
 
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (GuiTabs)
 };

@@ -4,8 +4,8 @@
 #include "GuiTabs.h"
 
 class SARAHAudioProcessorEditor
-	: public AudioProcessorEditor
-	, public ChangeListener
+    : public AudioProcessorEditor
+    , public ChangeListener
 {
 public:
     SARAHAudioProcessorEditor (SARAHAudioProcessor&);
@@ -14,11 +14,11 @@ public:
     void paint (Graphics&) override;
     void resized() override;
 
-	virtual void changeListenerCallback(ChangeBroadcaster* source);
+    virtual void changeListenerCallback(ChangeBroadcaster* source);
 
 private:
     SARAHAudioProcessor& processor;
-	GuiTabs guiTabs;
+    GuiTabs guiTabs;
 
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (SARAHAudioProcessorEditor)
 };

@@ -11,14 +11,14 @@ GuiTabs::GuiTabs (SynthSound* pSynthSound)
 {
     addAndMakeVisible (tabbedComponent = new TabbedComponent (TabbedButtonBar::TabsAtTop));
     tabbedComponent->setTabBarDepth (32);
-	tabbedComponent->addTab(TRANS("Main"), Colours::lightgrey, &mainTab, true);
+    tabbedComponent->addTab(TRANS("Main"), Colours::lightgrey, &mainTab, true);
     tabbedComponent->addTab(TRANS("Osc"), Colours::lightgrey, &oscTab, true);
-	tabbedComponent->addTab(TRANS("Amp"), Colours::lightgrey, &ampEgTab, true);
-	tabbedComponent->addTab(TRANS("Flt1"), Colours::lightgrey, &filter1Tab, true);
-	tabbedComponent->addTab(TRANS("Flt2"), Colours::lightgrey, &filter2Tab, true);
-	tabbedComponent->addTab(TRANS("P.EG"), Colours::lightgrey, &pitchEgTab, true);
-	tabbedComponent->addTab(TRANS("LFOs"), Colours::lightgrey, &lfoTab, true);
-	tabbedComponent->setCurrentTabIndex(0);
+    tabbedComponent->addTab(TRANS("Amp"), Colours::lightgrey, &ampEgTab, true);
+    tabbedComponent->addTab(TRANS("Flt1"), Colours::lightgrey, &filter1Tab, true);
+    tabbedComponent->addTab(TRANS("Flt2"), Colours::lightgrey, &filter2Tab, true);
+    tabbedComponent->addTab(TRANS("P.EG"), Colours::lightgrey, &pitchEgTab, true);
+    tabbedComponent->addTab(TRANS("LFOs"), Colours::lightgrey, &lfoTab, true);
+    tabbedComponent->setCurrentTabIndex(0);
 }
 
 GuiTabs::~GuiTabs()
@@ -38,11 +38,11 @@ void GuiTabs::resized()
 
 void GuiTabs::notify()
 {
-	mainTab.notify();
-	oscTab.notify();
-	ampEgTab.notify();
-	filter1Tab.notify();
-	filter2Tab.notify();
-	pitchEgTab.notify();
-	lfoTab.notify();
+    mainTab.notify();
+    oscTab.notify();
+    ampEgTab.notify();
+    filter1Tab.notify();
+    filter2Tab.notify();
+    pitchEgTab.notify();
+    lfoTab.notify();
 }

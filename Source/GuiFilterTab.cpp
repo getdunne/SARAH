@@ -1,8 +1,8 @@
 #include "GuiFilterTab.h"
 
 GuiFilterTab::GuiFilterTab (SynthSound* pSynthSound, int filterIndex)
-	: pSound(pSynthSound)
-	, whichFilter(filterIndex)
+    : pSound(pSynthSound)
+    , whichFilter(filterIndex)
     , cutoffLabel("cutoff", TRANS("Cutoff (%)"))
     , slopeLabel("slope", TRANS("Slope (dB/oct)"))
     , envAmountLabel("env amount", TRANS("Env Amount (%)"))
@@ -56,93 +56,93 @@ void GuiFilterTab::paint (Graphics& g)
 
 void GuiFilterTab::resized()
 {
-	const int labelLeft = 16;
-	const int controlLeft = 144;
-	const int labelWidth = 120;
-	const int sliderWidth = 420;
-	const int controlHeight = 24;
-	const int gapHeight = 8;
+    const int labelLeft = 16;
+    const int controlLeft = 144;
+    const int labelWidth = 120;
+    const int sliderWidth = 420;
+    const int controlHeight = 24;
+    const int gapHeight = 8;
 
-	int top = 20;
-	cutoffLabel.setBounds(labelLeft, top, labelWidth, controlHeight);
-	cutoffSlider.setBounds(controlLeft, top, sliderWidth, controlHeight);
-	top += controlHeight + gapHeight;
-	slopeLabel.setBounds(labelLeft, top, labelWidth, controlHeight);
-	slopeSlider.setBounds(controlLeft, top, sliderWidth, controlHeight);
+    int top = 20;
+    cutoffLabel.setBounds(labelLeft, top, labelWidth, controlHeight);
+    cutoffSlider.setBounds(controlLeft, top, sliderWidth, controlHeight);
+    top += controlHeight + gapHeight;
+    slopeLabel.setBounds(labelLeft, top, labelWidth, controlHeight);
+    slopeSlider.setBounds(controlLeft, top, sliderWidth, controlHeight);
 
-	top += controlHeight + 5 * gapHeight;
-	envAmountLabel.setBounds(labelLeft, top, labelWidth, controlHeight);
-	envAmountSlider.setBounds(controlLeft, top, sliderWidth, controlHeight);
-	top += controlHeight + 5 * gapHeight;
+    top += controlHeight + 5 * gapHeight;
+    envAmountLabel.setBounds(labelLeft, top, labelWidth, controlHeight);
+    envAmountSlider.setBounds(controlLeft, top, sliderWidth, controlHeight);
+    top += controlHeight + 5 * gapHeight;
 
-	attackLabel.setBounds(labelLeft, top, labelWidth, controlHeight);
-	attackSlider.setBounds(controlLeft, top, sliderWidth, controlHeight);
-	top += controlHeight + gapHeight;
-	decayLabel.setBounds(labelLeft, top, labelWidth, controlHeight);
-	decaySlider.setBounds(controlLeft, top, sliderWidth, controlHeight);
-	top += controlHeight + gapHeight;
-	sustainLabel.setBounds(labelLeft, top, labelWidth, controlHeight);
-	sustainSlider.setBounds(controlLeft, top, sliderWidth, controlHeight);
-	top += controlHeight + gapHeight;
-	releaseLabel.setBounds(labelLeft, top, labelWidth, controlHeight);
-	releaseSlider.setBounds(controlLeft, top, sliderWidth, controlHeight);
+    attackLabel.setBounds(labelLeft, top, labelWidth, controlHeight);
+    attackSlider.setBounds(controlLeft, top, sliderWidth, controlHeight);
+    top += controlHeight + gapHeight;
+    decayLabel.setBounds(labelLeft, top, labelWidth, controlHeight);
+    decaySlider.setBounds(controlLeft, top, sliderWidth, controlHeight);
+    top += controlHeight + gapHeight;
+    sustainLabel.setBounds(labelLeft, top, labelWidth, controlHeight);
+    sustainSlider.setBounds(controlLeft, top, sliderWidth, controlHeight);
+    top += controlHeight + gapHeight;
+    releaseLabel.setBounds(labelLeft, top, labelWidth, controlHeight);
+    releaseSlider.setBounds(controlLeft, top, sliderWidth, controlHeight);
 }
 
 void GuiFilterTab::sliderValueChanged (Slider* sliderThatWasMoved)
 {
-	double value = sliderThatWasMoved->getValue();
-	SynthParameters::FilterParams* pFilterParams = (whichFilter == 0)
-		? &pSound->pParams->filter1
-		: &pSound->pParams->filter2;
-	SynthParameters::EnvelopeParams* pEnvelopeParams = (whichFilter == 0)
-		? &pSound->pParams->filter1EG
-		: &pSound->pParams->filter2EG;
+    double value = sliderThatWasMoved->getValue();
+    SynthParameters::FilterParams* pFilterParams = (whichFilter == 0)
+        ? &pSound->pParams->filter1
+        : &pSound->pParams->filter2;
+    SynthParameters::EnvelopeParams* pEnvelopeParams = (whichFilter == 0)
+        ? &pSound->pParams->filter1EG
+        : &pSound->pParams->filter2EG;
 
-	if (sliderThatWasMoved == &cutoffSlider)
-	{
-		pFilterParams->cutoff = 0.01 * value;
-	}
-	else if (sliderThatWasMoved == &slopeSlider)
-	{
-		pFilterParams->dBperOctave = value;
-	}
-	else if (sliderThatWasMoved == &envAmountSlider)
-	{
-		pFilterParams->envAmount = 0.01 * value;
-	}
-	else if (sliderThatWasMoved == &attackSlider)
-	{
-		pEnvelopeParams->attackTimeSeconds = value;
+    if (sliderThatWasMoved == &cutoffSlider)
+    {
+        pFilterParams->cutoff = 0.01 * value;
+    }
+    else if (sliderThatWasMoved == &slopeSlider)
+    {
+        pFilterParams->dBperOctave = value;
+    }
+    else if (sliderThatWasMoved == &envAmountSlider)
+    {
+        pFilterParams->envAmount = 0.01 * value;
+    }
+    else if (sliderThatWasMoved == &attackSlider)
+    {
+        pEnvelopeParams->attackTimeSeconds = value;
     }
     else if (sliderThatWasMoved == &decaySlider)
     {
-		pEnvelopeParams->decayTimeSeconds = value;
+        pEnvelopeParams->decayTimeSeconds = value;
     }
     else if (sliderThatWasMoved == &sustainSlider)
     {
-		pEnvelopeParams->sustainLevel = 0.01 * value;
+        pEnvelopeParams->sustainLevel = 0.01 * value;
     }
     else if (sliderThatWasMoved == &releaseSlider)
     {
-		pEnvelopeParams->releaseTimeSeconds = value;
+        pEnvelopeParams->releaseTimeSeconds = value;
     }
-	pSound->parameterChanged();
+    pSound->parameterChanged();
 }
 
 void GuiFilterTab::notify()
 {
-	SynthParameters::FilterParams* pFilterParams = (whichFilter == 0)
-		? &pSound->pParams->filter1
-		: &pSound->pParams->filter2;
-	SynthParameters::EnvelopeParams* pEnvelopeParams = (whichFilter == 0)
-		? &pSound->pParams->filter1EG
-		: &pSound->pParams->filter2EG;
+    SynthParameters::FilterParams* pFilterParams = (whichFilter == 0)
+        ? &pSound->pParams->filter1
+        : &pSound->pParams->filter2;
+    SynthParameters::EnvelopeParams* pEnvelopeParams = (whichFilter == 0)
+        ? &pSound->pParams->filter1EG
+        : &pSound->pParams->filter2EG;
 
-	cutoffSlider.setValue(100.0 * pFilterParams->cutoff);
-	slopeSlider.setValue(pFilterParams->dBperOctave);
-	envAmountSlider.setValue(100.0 * pFilterParams->envAmount);
-	attackSlider.setValue(pEnvelopeParams->attackTimeSeconds);
-	decaySlider.setValue(pEnvelopeParams->decayTimeSeconds);
-	sustainSlider.setValue(100.0 * pEnvelopeParams->sustainLevel);
-	releaseSlider.setValue(pEnvelopeParams->releaseTimeSeconds);
+    cutoffSlider.setValue(100.0 * pFilterParams->cutoff);
+    slopeSlider.setValue(pFilterParams->dBperOctave);
+    envAmountSlider.setValue(100.0 * pFilterParams->envAmount);
+    attackSlider.setValue(pEnvelopeParams->attackTimeSeconds);
+    decaySlider.setValue(pEnvelopeParams->decayTimeSeconds);
+    sustainSlider.setValue(100.0 * pEnvelopeParams->sustainLevel);
+    releaseSlider.setValue(pEnvelopeParams->releaseTimeSeconds);
 }

@@ -7,19 +7,19 @@
 #define kNumberOfPrograms 128
 
 class SARAHAudioProcessor
-	: public AudioProcessor
-	, public ChangeBroadcaster
+    : public AudioProcessor
+    , public ChangeBroadcaster
 {
 public:
-	enum
-	{
-		maxNumberOfVoices = 16
-	};
+    enum
+    {
+        maxNumberOfVoices = 16
+    };
 
     SARAHAudioProcessor();
     virtual ~SARAHAudioProcessor();
 
-	void prepareToPlay (double sampleRate, int samplesPerBlock) override;
+    void prepareToPlay (double sampleRate, int samplesPerBlock) override;
     void releaseResources() override;
 
     void processBlock (AudioSampleBuffer&, MidiBuffer&) override;
@@ -41,23 +41,23 @@ public:
 
     void getStateInformation (MemoryBlock& destData) override;
     void setStateInformation (const void* data, int sizeInBytes) override;
-	void getCurrentProgramStateInformation(MemoryBlock& destData) override;
-	void setCurrentProgramStateInformation(const void* data, int sizeInBytes) override;
+    void getCurrentProgramStateInformation(MemoryBlock& destData) override;
+    void setCurrentProgramStateInformation(const void* data, int sizeInBytes) override;
 
 public:
-	SynthSound* getSound() { return pSound; }
+    SynthSound* getSound() { return pSound; }
 
 private:
-	//AudioFormatManager formatManager;
-	Synth synth;
-	SynthSound* pSound;
-	SynthParameters programBank[kNumberOfPrograms];
-	int currentProgram;
+    //AudioFormatManager formatManager;
+    Synth synth;
+    SynthSound* pSound;
+    SynthParameters programBank[kNumberOfPrograms];
+    int currentProgram;
 
 private:
-	void initializePrograms();
+    void initializePrograms();
 
-	//void loadNewSample(const void* data, int dataSize);
+    //void loadNewSample(const void* data, int dataSize);
 
-	JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (SARAHAudioProcessor)
+    JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (SARAHAudioProcessor)
 };

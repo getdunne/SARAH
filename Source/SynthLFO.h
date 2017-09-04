@@ -4,10 +4,10 @@
 class SynthLFO : public SynthOscillatorBase
 {
 public:
-	SynthLFO() : SynthOscillatorBase() {}
+    SynthLFO() : SynthOscillatorBase() {}
     
-	float getSample();
+    float getSample();
 
 protected:
-	float getSineSample();
+    float getSineSample();
 };

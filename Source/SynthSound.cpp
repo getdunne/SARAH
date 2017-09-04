@@ -3,12 +3,12 @@
 #include "Synth.h"
 
 SynthSound::SynthSound(Synth& ownerSynth)
-	: SynthesiserSound()
-	, synth(ownerSynth)
+    : SynthesiserSound()
+    , synth(ownerSynth)
 {
 }
 
 void SynthSound::parameterChanged()
 {
-	synth.soundParameterChanged();
+    synth.soundParameterChanged();
 }

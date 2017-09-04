@@ -11,10 +11,10 @@ public:
     void resized() override;
     void sliderValueChanged (Slider* sliderThatWasMoved) override;
 
-	void notify();
+    void notify();
 
 private:
-	SynthSound* pSound;
+    SynthSound* pSound;
 
     Label masterLevelLabel, pbUpLabel, pbDownLabel;
     Slider masterLevelSlider, pbUpSlider, pbDownSlider;

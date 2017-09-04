@@ -3,54 +3,54 @@
 #include "SynthVoice.h"
 
 SARAHAudioProcessor::SARAHAudioProcessor()
-	: currentProgram(0)
+    : currentProgram(0)
 {
-	SynthOscillatorBase::Initialize();
-	initializePrograms();
+    SynthOscillatorBase::Initialize();
+    initializePrograms();
 
-	//formatManager.registerBasicFormats();
+    //formatManager.registerBasicFormats();
 
-	for (int i = 0; i < maxNumberOfVoices; ++i)
-		//synth.addVoice(new SamplerVoice());
-		synth.addVoice(new SynthVoice());
+    for (int i = 0; i < maxNumberOfVoices; ++i)
+        //synth.addVoice(new SamplerVoice());
+        synth.addVoice(new SynthVoice());
 
-	//loadNewSample(BinaryData::singing_ogg, BinaryData::singing_oggSize);
-	pSound = new SynthSound(synth);
-	pSound->pParams = &programBank[currentProgram];
-	synth.addSound(pSound);
+    //loadNewSample(BinaryData::singing_ogg, BinaryData::singing_oggSize);
+    pSound = new SynthSound(synth);
+    pSound->pParams = &programBank[currentProgram];
+    synth.addSound(pSound);
 }
 
 SARAHAudioProcessor::~SARAHAudioProcessor()
 {
-	SynthOscillatorBase::Cleanup();
+    SynthOscillatorBase::Cleanup();
 }
 
 void SARAHAudioProcessor::initializePrograms()
 {
-	for (int i = 0; i < kNumberOfPrograms; i++)
-		programBank[i].setDefaultValues();
+    for (int i = 0; i < kNumberOfPrograms; i++)
+        programBank[i].setDefaultValues();
 }
 
 #if 0
 void SARAHAudioProcessor::loadNewSample(const void* data, int dataSize)
 {
-	MemoryInputStream* soundBuffer = new MemoryInputStream(data, static_cast<std::size_t> (dataSize), false);
-	ScopedPointer<AudioFormatReader> formatReader(formatManager.findFormatForFileExtension("ogg")->createReaderFor(soundBuffer, true));
+    MemoryInputStream* soundBuffer = new MemoryInputStream(data, static_cast<std::size_t> (dataSize), false);
+    ScopedPointer<AudioFormatReader> formatReader(formatManager.findFormatForFileExtension("ogg")->createReaderFor(soundBuffer, true));
 
-	BigInteger midiNotes;
-	midiNotes.setRange(0, 126, true);
-	SynthesiserSound::Ptr newSound = new SamplerSound("Voice", *formatReader, midiNotes, 0x40, 0.0, 0.0, 10.0);
+    BigInteger midiNotes;
+    midiNotes.setRange(0, 126, true);
+    SynthesiserSound::Ptr newSound = new SamplerSound("Voice", *formatReader, midiNotes, 0x40, 0.0, 0.0, 10.0);
 
-	synth.removeSound(0);
-	sound = newSound;
-	synth.addSound(sound);
+    synth.removeSound(0);
+    sound = newSound;
+    synth.addSound(sound);
 }
 #endif
 
 
 const String SARAHAudioProcessor::getName() const
 {
-	return String(JucePlugin_Name);
+    return String(JucePlugin_Name);
 }
 
 bool SARAHAudioProcessor::acceptsMidi() const
@@ -78,7 +78,7 @@ double SARAHAudioProcessor::getTailLengthSeconds() const
 
 int SARAHAudioProcessor::getNumPrograms()
 {
-	return kNumberOfPrograms;
+    return kNumberOfPrograms;
 }
 
 int SARAHAudioProcessor::getCurrentProgram()
@@ -88,27 +88,27 @@ int SARAHAudioProcessor::getCurrentProgram()
 
 void SARAHAudioProcessor::setCurrentProgram (int index)
 {
-	currentProgram = index;
-	pSound->pParams = &programBank[currentProgram];
-	sendChangeMessage();
+    currentProgram = index;
+    pSound->pParams = &programBank[currentProgram];
+    sendChangeMessage();
 }
 
 const String SARAHAudioProcessor::getProgramName (int index)
 {
-	return String(programBank[index].programName);
+    return String(programBank[index].programName);
 }
 
 void SARAHAudioProcessor::changeProgramName (int index, const String& newName)
 {
-	newName.copyToUTF8(programBank[index].programName, kMaxProgramNameLength);
-	sendChangeMessage();
+    newName.copyToUTF8(programBank[index].programName, kMaxProgramNameLength);
+    sendChangeMessage();
 }
 
 void SARAHAudioProcessor::prepareToPlay (double sampleRate, int samplesPerBlock)
 {
-	ignoreUnused(samplesPerBlock);
+    ignoreUnused(samplesPerBlock);
 
-	synth.setCurrentPlaybackSampleRate(sampleRate);
+    synth.setCurrentPlaybackSampleRate(sampleRate);
 }
 
 void SARAHAudioProcessor::releaseResources()
@@ -119,7 +119,7 @@ void SARAHAudioProcessor::releaseResources()
 
 void SARAHAudioProcessor::processBlock (AudioSampleBuffer& buffer, MidiBuffer& midiMessages)
 {
-	synth.renderNextBlock(buffer, midiMessages, 0, buffer.getNumSamples());
+    synth.renderNextBlock(buffer, midiMessages, 0, buffer.getNumSamples());
 }
 
 bool SARAHAudioProcessor::hasEditor() const
@@ -129,48 +129,48 @@ bool SARAHAudioProcessor::hasEditor() const
 
 AudioProcessorEditor* SARAHAudioProcessor::createEditor()
 {
-	return new SARAHAudioProcessorEditor(*this);
+    return new SARAHAudioProcessorEditor(*this);
 }
 
 void SARAHAudioProcessor::getStateInformation (MemoryBlock& destData)
 {
-	XmlElement xml = XmlElement("SARAH");
-	xml.setAttribute(String("currentProgram"), currentProgram);
-	XmlElement* xprogs = new XmlElement("programs");
-	for (int i = 0; i < kNumberOfPrograms; i++)
-		xprogs->addChildElement(programBank[i].getXml());
-	xml.addChildElement(xprogs);
-	copyXmlToBinary(xml, destData);
+    XmlElement xml = XmlElement("SARAH");
+    xml.setAttribute(String("currentProgram"), currentProgram);
+    XmlElement* xprogs = new XmlElement("programs");
+    for (int i = 0; i < kNumberOfPrograms; i++)
+        xprogs->addChildElement(programBank[i].getXml());
+    xml.addChildElement(xprogs);
+    copyXmlToBinary(xml, destData);
 }
 
 void SARAHAudioProcessor::setStateInformation (const void* data, int sizeInBytes)
 {
-	ScopedPointer<XmlElement> xml = getXmlFromBinary(data, sizeInBytes);
-	XmlElement* xprogs = xml->getFirstChildElement();
-	if (xprogs->hasTagName(String("programs")))
-	{
-		int i = 0;
-		forEachXmlChildElement(*xprogs, xpr)
-		{
-			programBank[i].setDefaultValues();
-			programBank[i].putXml(xpr);
-			i++;
-		}
-	}
-	setCurrentProgram(xml->getIntAttribute(String("currentProgram"), 0));
+    ScopedPointer<XmlElement> xml = getXmlFromBinary(data, sizeInBytes);
+    XmlElement* xprogs = xml->getFirstChildElement();
+    if (xprogs->hasTagName(String("programs")))
+    {
+        int i = 0;
+        forEachXmlChildElement(*xprogs, xpr)
+        {
+            programBank[i].setDefaultValues();
+            programBank[i].putXml(xpr);
+            i++;
+        }
+    }
+    setCurrentProgram(xml->getIntAttribute(String("currentProgram"), 0));
 }
 
 void SARAHAudioProcessor::getCurrentProgramStateInformation(MemoryBlock& destData)
 {
-	ScopedPointer<XmlElement> xml = programBank[currentProgram].getXml();
-	copyXmlToBinary(*xml, destData);
+    ScopedPointer<XmlElement> xml = programBank[currentProgram].getXml();
+    copyXmlToBinary(*xml, destData);
 }
 
 void SARAHAudioProcessor::setCurrentProgramStateInformation(const void* data, int sizeInBytes)
 {
-	ScopedPointer<XmlElement> xml = getXmlFromBinary(data, sizeInBytes);
-	programBank[currentProgram].putXml(xml);
-	sendChangeMessage();
+    ScopedPointer<XmlElement> xml = getXmlFromBinary(data, sizeInBytes);
+    programBank[currentProgram].putXml(xml);
+    sendChangeMessage();
 }
 
 // This creates new instances of the plugin.

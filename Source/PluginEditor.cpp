@@ -3,31 +3,31 @@
 
 SARAHAudioProcessorEditor::SARAHAudioProcessorEditor (SARAHAudioProcessor& p)
     : AudioProcessorEditor (&p)
-	, processor (p)
-	, guiTabs(p.getSound())
+    , processor (p)
+    , guiTabs(p.getSound())
 {
     setSize (600, 400);
-	addAndMakeVisible(&guiTabs);
-	p.addChangeListener(this);
+    addAndMakeVisible(&guiTabs);
+    p.addChangeListener(this);
 }
 
 SARAHAudioProcessorEditor::~SARAHAudioProcessorEditor()
 {
-	processor.removeChangeListener(this);
+    processor.removeChangeListener(this);
 }
 
 void SARAHAudioProcessorEditor::paint (Graphics& g)
 {
-	ignoreUnused(g);
+    ignoreUnused(g);
 }
 
 void SARAHAudioProcessorEditor::resized()
 {
-	guiTabs.setBounds(0, 0, proportionOfWidth(1.0000f), proportionOfHeight(1.0000f));
+    guiTabs.setBounds(0, 0, proportionOfWidth(1.0000f), proportionOfHeight(1.0000f));
 }
 
 void SARAHAudioProcessorEditor::changeListenerCallback(ChangeBroadcaster* source)
 {
-	ignoreUnused(source);
-	guiTabs.notify();
+    ignoreUnused(source);
+    guiTabs.notify();
 }

@@ -1,7 +1,7 @@
 #include "GuiPitchEgTab.h"
 
 GuiPitchEgTab::GuiPitchEgTab (SynthSound* pSynthSound)
-	: pSound(pSynthSound)
+    : pSound(pSynthSound)
     , attackLabel1("attack1", TRANS("Attack Time (sec)"))
     , sustainLabel1("sustain1", TRANS("Sustain (semitones)"))
     , releaseLabel1("release1", TRANS("Release Time (sec)"))
@@ -37,7 +37,7 @@ GuiPitchEgTab::GuiPitchEgTab (SynthSound* pSynthSound)
     initSlider(sustainSlider2); sustainSlider2.setRange(-12, 12, 0);
     initSlider(releaseSlider2); releaseSlider2.setRange(0, 10, 0);
 
-	notify();
+    notify();
 }
 
 //==============================================================================
@@ -48,75 +48,75 @@ void GuiPitchEgTab::paint (Graphics& g)
 
 void GuiPitchEgTab::resized()
 {
-	const int labelLeft = 16;
-	const int controlLeft = 144;
-	const int labelWidth = 120;
-	const int sliderWidth = 420;
-	const int controlHeight = 24;
-	const int gapHeight = 8;
+    const int labelLeft = 16;
+    const int controlLeft = 144;
+    const int labelWidth = 120;
+    const int sliderWidth = 420;
+    const int controlHeight = 24;
+    const int gapHeight = 8;
 
-	int top = 20;
-	attackLabel1.setBounds (labelLeft, top, labelWidth, controlHeight);
+    int top = 20;
+    attackLabel1.setBounds (labelLeft, top, labelWidth, controlHeight);
     attackSlider1.setBounds (controlLeft, top, sliderWidth, controlHeight);
-	top += controlHeight + gapHeight;
-	sustainLabel1.setBounds (labelLeft, top, labelWidth, controlHeight);
+    top += controlHeight + gapHeight;
+    sustainLabel1.setBounds (labelLeft, top, labelWidth, controlHeight);
     sustainSlider1.setBounds (controlLeft, top, sliderWidth, controlHeight);
-	top += controlHeight + gapHeight;
-	releaseLabel1.setBounds (labelLeft, top, labelWidth, controlHeight);
+    top += controlHeight + gapHeight;
+    releaseLabel1.setBounds (labelLeft, top, labelWidth, controlHeight);
     releaseSlider1.setBounds (controlLeft, top, sliderWidth, controlHeight);
 
-	top += controlHeight + 5 * gapHeight;
-	attackLabel2.setBounds(labelLeft, top, labelWidth, controlHeight);
-	attackSlider2.setBounds(controlLeft, top, sliderWidth, controlHeight);
-	top += controlHeight + gapHeight;
-	sustainLabel2.setBounds(labelLeft, top, labelWidth, controlHeight);
-	sustainSlider2.setBounds(controlLeft, top, sliderWidth, controlHeight);
-	top += controlHeight + gapHeight;
-	releaseLabel2.setBounds(labelLeft, top, labelWidth, controlHeight);
-	releaseSlider2.setBounds(controlLeft, top, sliderWidth, controlHeight);
+    top += controlHeight + 5 * gapHeight;
+    attackLabel2.setBounds(labelLeft, top, labelWidth, controlHeight);
+    attackSlider2.setBounds(controlLeft, top, sliderWidth, controlHeight);
+    top += controlHeight + gapHeight;
+    sustainLabel2.setBounds(labelLeft, top, labelWidth, controlHeight);
+    sustainSlider2.setBounds(controlLeft, top, sliderWidth, controlHeight);
+    top += controlHeight + gapHeight;
+    releaseLabel2.setBounds(labelLeft, top, labelWidth, controlHeight);
+    releaseSlider2.setBounds(controlLeft, top, sliderWidth, controlHeight);
 }
 
 void GuiPitchEgTab::sliderValueChanged (Slider* sliderThatWasMoved)
 {
-	double value = sliderThatWasMoved->getValue();
-	SynthParameters::EnvelopeParams* peg1Params = &pSound->pParams->pitch1EG;
-	SynthParameters::EnvelopeParams* peg2Params = &pSound->pParams->pitch2EG;
-	if (sliderThatWasMoved == &attackSlider1)
+    double value = sliderThatWasMoved->getValue();
+    SynthParameters::EnvelopeParams* peg1Params = &pSound->pParams->pitch1EG;
+    SynthParameters::EnvelopeParams* peg2Params = &pSound->pParams->pitch2EG;
+    if (sliderThatWasMoved == &attackSlider1)
     {
-		peg1Params->attackTimeSeconds = value;
+        peg1Params->attackTimeSeconds = value;
     }
     else if (sliderThatWasMoved == &sustainSlider1)
     {
-		peg1Params->sustainLevel = value;
+        peg1Params->sustainLevel = value;
     }
     else if (sliderThatWasMoved == &releaseSlider1)
     {
-		peg1Params->releaseTimeSeconds = value;
+        peg1Params->releaseTimeSeconds = value;
     }
-	else if (sliderThatWasMoved == &attackSlider2)
-	{
-		peg2Params->attackTimeSeconds = value;
-	}
-	else if (sliderThatWasMoved == &sustainSlider2)
-	{
-		peg2Params->sustainLevel = value;
-	}
-	else if (sliderThatWasMoved == &releaseSlider2)
-	{
-		peg2Params->releaseTimeSeconds = value;
-	}
-	pSound->parameterChanged();
+    else if (sliderThatWasMoved == &attackSlider2)
+    {
+        peg2Params->attackTimeSeconds = value;
+    }
+    else if (sliderThatWasMoved == &sustainSlider2)
+    {
+        peg2Params->sustainLevel = value;
+    }
+    else if (sliderThatWasMoved == &releaseSlider2)
+    {
+        peg2Params->releaseTimeSeconds = value;
+    }
+    pSound->parameterChanged();
 }
 
 void GuiPitchEgTab::notify()
 {
-	SynthParameters::EnvelopeParams* peg1Params = &pSound->pParams->pitch1EG;
-	attackSlider1.setValue(peg1Params->attackTimeSeconds);
-	sustainSlider1.setValue(peg1Params->sustainLevel);
-	releaseSlider1.setValue(peg1Params->releaseTimeSeconds);
+    SynthParameters::EnvelopeParams* peg1Params = &pSound->pParams->pitch1EG;
+    attackSlider1.setValue(peg1Params->attackTimeSeconds);
+    sustainSlider1.setValue(peg1Params->sustainLevel);
+    releaseSlider1.setValue(peg1Params->releaseTimeSeconds);
 
-	SynthParameters::EnvelopeParams* peg2Params = &pSound->pParams->pitch2EG;
-	attackSlider2.setValue(peg2Params->attackTimeSeconds);
-	sustainSlider2.setValue(peg2Params->sustainLevel);
-	releaseSlider2.setValue(peg2Params->releaseTimeSeconds);
+    SynthParameters::EnvelopeParams* peg2Params = &pSound->pParams->pitch2EG;
+    attackSlider2.setValue(peg2Params->attackTimeSeconds);
+    sustainSlider2.setValue(peg2Params->sustainLevel);
+    releaseSlider2.setValue(peg2Params->releaseTimeSeconds);
 }

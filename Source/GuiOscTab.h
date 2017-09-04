@@ -14,10 +14,10 @@ public:
     void comboBoxChanged (ComboBox* comboBoxThatHasChanged) override;
     void sliderValueChanged (Slider* sliderThatWasMoved) override;
 
-	void notify();
+    void notify();
 
 private:
-	SynthSound* pSound;
+    SynthSound* pSound;
 
     Label wfLabel1, semiLabel1, detuneLabel1;
     ComboBox waveformCB1;
@@ -28,5 +28,5 @@ private:
     Label oscBlendLabel;
     Slider oscBlendSlider;
 
-	JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (GuiOscTab)
+    JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (GuiOscTab)
 };
