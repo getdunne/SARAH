@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<JUCERPROJECT id="pjItUw" name="SARAH" displaySplashScreen="1" reportAppUsage="1"
+              splashScreenColour="Dark" projectType="audioplug" version="1.0.0"
+              bundleIdentifier="com.yourcompany.SARAH" includeBinaryInAppConfig="0"
+              cppLanguageStandard="latest" buildVST="1" buildVST3="0" buildAU="1"
+              buildAUv3="0" buildRTAS="0" buildAAX="0" buildStandalone="0"
+              enableIAA="0" pluginName="SARAH" pluginDesc="FFT-based Synthesizer"
+              pluginManufacturer="your company" pluginManufacturerCode="Ycom"
+              pluginCode="Pjit" pluginChannelConfigs="{0,2}" pluginIsSynth="1"
+              pluginWantsMidiIn="1" pluginProducesMidiOut="0" pluginIsMidiEffectPlugin="0"
+              pluginEditorRequiresKeys="0" pluginAUExportPrefix="SarahAU" pluginRTASCategory=""
+              aaxIdentifier="com.yourcompany.SARAH" pluginAAXCategory="AAX_ePlugInCategory_Dynamics"
+              jucerVersion="5.1.1" companyName="your company" companyWebsite="www.yourcompany.com"
+              companyEmail="info@yourcompany.com" binaryDataNamespace="">
+  <MAINGROUP id="lIYlKh" name="SARAH">
+    <GROUP id="{FD1652B3-CC47-70AE-6DD4-1247BF670310}" name="Plugin">
+      <FILE id="W8uTfY" name="PluginProcessor.cpp" compile="1" resource="0"
+            file="Source/PluginProcessor.cpp"/>
+      <FILE id="tlhY9i" name="PluginProcessor.h" compile="0" resource="0"
+            file="Source/PluginProcessor.h"/>
+      <FILE id="qUf5oq" name="PluginEditor.cpp" compile="1" resource="0"
+            file="Source/PluginEditor.cpp"/>
+      <FILE id="RHiRGZ" name="PluginEditor.h" compile="0" resource="0" file="Source/PluginEditor.h"/>
+    </GROUP>
+    <GROUP id="{4A9FE9B7-56FA-1702-A3F0-5A1821D3F733}" name="Synthesizer">
+      <FILE id="WgO2d5" name="Synth.cpp" compile="1" resource="0" file="Source/Synth.cpp"/>
+      <FILE id="k3KAgn" name="Synth.h" compile="0" resource="0" file="Source/Synth.h"/>
+      <FILE id="kEAOpB" name="SynthEnvelopeGenerator.cpp" compile="1" resource="0"
+            file="Source/SynthEnvelopeGenerator.cpp"/>
+      <FILE id="V3EBcP" name="SynthEnvelopeGenerator.h" compile="0" resource="0"
+            file="Source/SynthEnvelopeGenerator.h"/>
+      <FILE id="OiPQqq" name="SynthLFO.cpp" compile="1" resource="0" file="Source/SynthLFO.cpp"/>
+      <FILE id="x9fPUU" name="SynthLFO.h" compile="0" resource="0" file="Source/SynthLFO.h"/>
+      <FILE id="LxHIJu" name="SynthOscillator.cpp" compile="1" resource="0"
+            file="Source/SynthOscillator.cpp"/>
+      <FILE id="TwjI66" name="SynthOscillator.h" compile="0" resource="0"
+            file="Source/SynthOscillator.h"/>
+      <FILE id="u8KJHV" name="SynthOscillatorBase.cpp" compile="1" resource="0"
+            file="Source/SynthOscillatorBase.cpp"/>
+      <FILE id="yWCNK1" name="SynthOscillatorBase.h" compile="0" resource="0"
+            file="Source/SynthOscillatorBase.h"/>
+      <FILE id="JVTzUr" name="SynthParameters.cpp" compile="1" resource="0"
+            file="Source/SynthParameters.cpp"/>
+      <FILE id="BabIxS" name="SynthParameters.h" compile="0" resource="0"
+            file="Source/SynthParameters.h"/>
+      <FILE id="Ws4DYp" name="SynthSound.cpp" compile="1" resource="0" file="Source/SynthSound.cpp"/>
+      <FILE id="DdoSeZ" name="SynthSound.h" compile="0" resource="0" file="Source/SynthSound.h"/>
+      <FILE id="CwYGy5" name="SynthVoice.cpp" compile="1" resource="0" file="Source/SynthVoice.cpp"/>
+      <FILE id="RXvTJ4" name="SynthVoice.h" compile="0" resource="0" file="Source/SynthVoice.h"/>
+    </GROUP>
+    <GROUP id="{60F36A42-6911-9BD2-E13B-D6F97561CD19}" name="Editor">
+      <FILE id="Okf9B4" name="GuiAmpEgTab.cpp" compile="1" resource="0" file="Source/GuiAmpEgTab.cpp"/>
+      <FILE id="HbFR8x" name="GuiAmpEgTab.h" compile="0" resource="0" file="Source/GuiAmpEgTab.h"/>
+      <FILE id="OWzoRt" name="GuiFilterTab.cpp" compile="1" resource="0"
+            file="Source/GuiFilterTab.cpp"/>
+      <FILE id="IRhmeB" name="GuiFilterTab.h" compile="0" resource="0" file="Source/GuiFilterTab.h"/>
+      <FILE id="CaqODQ" name="GuiLFOTab.cpp" compile="1" resource="0" file="Source/GuiLFOTab.cpp"/>
+      <FILE id="Xaq2K0" name="GuiLFOTab.h" compile="0" resource="0" file="Source/GuiLFOTab.h"/>
+      <FILE id="JVb8h6" name="GuiMainTab.cpp" compile="1" resource="0" file="Source/GuiMainTab.cpp"/>
+      <FILE id="SDWZXt" name="GuiMainTab.h" compile="0" resource="0" file="Source/GuiMainTab.h"/>
+      <FILE id="VwIQbk" name="GuiOscTab.cpp" compile="1" resource="0" file="Source/GuiOscTab.cpp"/>
+      <FILE id="CnKopj" name="GuiOscTab.h" compile="0" resource="0" file="Source/GuiOscTab.h"/>
+      <FILE id="ZsE9MQ" name="GuiPitchEgTab.cpp" compile="1" resource="0"
+            file="Source/GuiPitchEgTab.cpp"/>
+      <FILE id="OJWXUG" name="GuiPitchEgTab.h" compile="0" resource="0" file="Source/GuiPitchEgTab.h"/>
+      <FILE id="DrCpMj" name="GuiTabs.cpp" compile="1" resource="0" file="Source/GuiTabs.cpp"/>
+      <FILE id="zVoOjs" name="GuiTabs.h" compile="0" resource="0" file="Source/GuiTabs.h"/>
+    </GROUP>
+  </MAINGROUP>
+  <EXPORTFORMATS>
+    <VS2017 targetFolder="Builds/VisualStudio2017">
+      <CONFIGURATIONS>
+        <CONFIGURATION name="Debug" winWarningLevel="4" generateManifest="1" winArchitecture="x64"
+                       isDebug="1" optimisation="1" targetName="SARAH"/>
+        <CONFIGURATION name="Release" winWarningLevel="4" generateManifest="1" winArchitecture="x64"
+                       isDebug="0" optimisation="3" targetName="SARAH"/>
+      </CONFIGURATIONS>
+      <MODULEPATHS>
+        <MODULEPATH id="juce_core" path="../../modules"/>
+        <MODULEPATH id="juce_events" path="../../modules"/>
+        <MODULEPATH id="juce_graphics" path="../../modules"/>
+        <MODULEPATH id="juce_data_structures" path="../../modules"/>
+        <MODULEPATH id="juce_gui_basics" path="../../modules"/>
+        <MODULEPATH id="juce_gui_extra" path="../../modules"/>
+        <MODULEPATH id="juce_cryptography" path="../../modules"/>
+        <MODULEPATH id="juce_opengl" path="../../modules"/>
+        <MODULEPATH id="juce_audio_basics" path="../../modules"/>
+        <MODULEPATH id="juce_audio_devices" path="../../modules"/>
+        <MODULEPATH id="juce_audio_formats" path="../../modules"/>
+        <MODULEPATH id="juce_audio_processors" path="../../modules"/>
+        <MODULEPATH id="juce_audio_plugin_client" path="../../modules"/>
+        <MODULEPATH id="juce_audio_utils" path="../../modules"/>
+        <MODULEPATH id="juce_dsp" path="../../modules"/>
+      </MODULEPATHS>
+    </VS2017>
+    <XCODE_MAC targetFolder="Builds/MacOSX">
+      <CONFIGURATIONS>
+        <CONFIGURATION name="Debug" isDebug="1" optimisation="1" targetName="SARAH"/>
+        <CONFIGURATION name="Release" isDebug="0" optimisation="3" targetName="SARAH"/>
+      </CONFIGURATIONS>
+      <MODULEPATHS>
+        <MODULEPATH id="juce_opengl" path="../../modules"/>
+        <MODULEPATH id="juce_gui_extra" path="../../modules"/>
+        <MODULEPATH id="juce_gui_basics" path="../../modules"/>
+        <MODULEPATH id="juce_graphics" path="../../modules"/>
+        <MODULEPATH id="juce_events" path="../../modules"/>
+        <MODULEPATH id="juce_dsp" path="../../modules"/>
+        <MODULEPATH id="juce_data_structures" path="../../modules"/>
+        <MODULEPATH id="juce_cryptography" path="../../modules"/>
+        <MODULEPATH id="juce_core" path="../../modules"/>
+        <MODULEPATH id="juce_audio_utils" path="../../modules"/>
+        <MODULEPATH id="juce_audio_processors" path="../../modules"/>
+        <MODULEPATH id="juce_audio_plugin_client" path="../../modules"/>
+        <MODULEPATH id="juce_audio_formats" path="../../modules"/>
+        <MODULEPATH id="juce_audio_devices" path="../../modules"/>
+        <MODULEPATH id="juce_audio_basics" path="../../modules"/>
+      </MODULEPATHS>
+    </XCODE_MAC>
+  </EXPORTFORMATS>
+  <MODULES>
+    <MODULE id="juce_audio_basics" showAllCode="1" useLocalCopy="1" useGlobalPath="1"/>
+    <MODULE id="juce_audio_devices" showAllCode="1" useLocalCopy="1" useGlobalPath="1"/>
+    <MODULE id="juce_audio_formats" showAllCode="1" useLocalCopy="1" useGlobalPath="1"/>
+    <MODULE id="juce_audio_plugin_client" showAllCode="1" useLocalCopy="1"
+            useGlobalPath="1"/>
+    <MODULE id="juce_audio_processors" showAllCode="1" useLocalCopy="1" useGlobalPath="1"/>
+    <MODULE id="juce_audio_utils" showAllCode="1" useLocalCopy="1" useGlobalPath="1"/>
+    <MODULE id="juce_core" showAllCode="1" useLocalCopy="1" useGlobalPath="1"/>
+    <MODULE id="juce_cryptography" showAllCode="1" useLocalCopy="1" useGlobalPath="1"/>
+    <MODULE id="juce_data_structures" showAllCode="1" useLocalCopy="1" useGlobalPath="1"/>
+    <MODULE id="juce_dsp" showAllCode="1" useLocalCopy="1" useGlobalPath="1"/>
+    <MODULE id="juce_events" showAllCode="1" useLocalCopy="1" useGlobalPath="1"/>
+    <MODULE id="juce_graphics" showAllCode="1" useLocalCopy="1" useGlobalPath="1"/>
+    <MODULE id="juce_gui_basics" showAllCode="1" useLocalCopy="1" useGlobalPath="1"/>
+    <MODULE id="juce_gui_extra" showAllCode="1" useLocalCopy="1" useGlobalPath="1"/>
+    <MODULE id="juce_opengl" showAllCode="1" useLocalCopy="1" useGlobalPath="1"/>
+  </MODULES>
+  <JUCEOPTIONS JUCE_QUICKTIME="disabled"/>
+</JUCERPROJECT>
