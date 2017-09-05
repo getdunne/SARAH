@@ -1,21 +1,20 @@
 #pragma once
 #include "../JuceLibraryCode/JuceHeader.h"
 
-typedef enum
-{
-    kIdle,
-    kAttack,
-    kDecay,
-    kSustain,
-    kRelease
-} EG_Segment;
-
 class SynthEnvelopeGenerator
 {
 private:
     double sampleRateHz;
     LinearSmoothedValue<double> interpolator;
-    EG_Segment segment;
+
+    enum class EG_Segment
+    {
+        idle,
+        attack,
+        decay,
+        sustain,
+        release
+    } segment;
 
 public:
     double attackSeconds, decaySeconds, releaseSeconds;
@@ -24,9 +23,9 @@ public:
 public:
     SynthEnvelopeGenerator();
 
-    void start(double _sampleRateHz);    // called for note-on
-    void release();                        // called for note-off
-    void stop() { segment = kIdle; }    // force reset
-    bool isRunning() { return segment != kIdle; }
-    float getSample ();
+    void start(double _sampleRateHz);   // called for note-on
+    void release();                     // called for note-off
+    bool isRunning() { return segment != EG_Segment::idle; }
+    void stop() { segment = EG_Segment::idle; }
+    float getSample();
 };
