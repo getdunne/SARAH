@@ -119,16 +119,14 @@ void GuiOscTab::resized()
 
 void GuiOscTab::comboBoxChanged(ComboBox* comboBoxThatHasChanged)
 {
-    SynthOscillatorBase::WaveformEnum wf = (SynthOscillatorBase::WaveformEnum)
-        (SynthOscillatorBase::kSine + comboBoxThatHasChanged->getSelectedItemIndex());
     SynthParameters* pParams = pSound->pParams;
     if (comboBoxThatHasChanged == &waveformCB1)
     {
-        pParams->osc1.waveform = wf;
+        pParams->osc1.waveform.fromComboBox(*comboBoxThatHasChanged);
     }
     else if (comboBoxThatHasChanged == &waveformCB2)
     {
-        pParams->osc2.waveform = wf;
+        pParams->osc2.waveform.fromComboBox(*comboBoxThatHasChanged);
     }
     pSound->parameterChanged();
 }
@@ -164,11 +162,11 @@ void GuiOscTab::notify()
 {
     SynthParameters* pParams = pSound->pParams;
 
-    waveformCB1.setSelectedItemIndex(int(pParams->pitchLFO.waveform - SynthOscillatorBase::kSine));
+    pParams->osc1.waveform.toComboBox(waveformCB1);
     semiSlider1.setValue(pParams->osc1.pitchOffsetSemitones);
     detuneSlider1.setValue(pParams->osc1.detuneOffsetCents);
 
-    waveformCB2.setSelectedItemIndex(int(pParams->filterLFO.waveform - SynthOscillatorBase::kSine));
+    pParams->osc2.waveform.toComboBox(waveformCB2);
     semiSlider2.setValue(pParams->osc2.pitchOffsetSemitones);
     detuneSlider2.setValue(pParams->osc2.detuneOffsetCents);
 

@@ -34,15 +34,9 @@ GuiLFOTab::GuiLFOTab (SynthSound* pSynthSound)
     };
 
     initCombo(waveformCB1);
-    waveformCB1.addItem (TRANS("Sine"), 1);
-    waveformCB1.addItem (TRANS("Triangle"), 2);
-    waveformCB1.addItem (TRANS("Square"), 3);
-    waveformCB1.addItem (TRANS("Sawtooth"), 4);
+    SynthWaveform::setupComboBox(waveformCB1);
     initCombo(waveformCB2);
-    waveformCB2.addItem(TRANS("Sine"), 1);
-    waveformCB2.addItem(TRANS("Triangle"), 2);
-    waveformCB2.addItem(TRANS("Square"), 3);
-    waveformCB2.addItem(TRANS("Sawtooth"), 4);
+    SynthWaveform::setupComboBox(waveformCB2);
 
     auto initSlider = [this](Slider& slider)
     {
@@ -99,16 +93,14 @@ void GuiLFOTab::resized()
 
 void GuiLFOTab::comboBoxChanged (ComboBox* comboBoxThatHasChanged)
 {
-    SynthOscillatorBase::WaveformEnum wf = (SynthOscillatorBase::WaveformEnum)
-        (SynthOscillatorBase::kSine + comboBoxThatHasChanged->getSelectedItemIndex());
     SynthParameters* pParams = pSound->pParams;
     if (comboBoxThatHasChanged == &waveformCB1)
     {
-        pParams->pitchLFO.waveform = wf;
+        pParams->pitchLFO.waveform.fromComboBox(*comboBoxThatHasChanged);
     }
     else if (comboBoxThatHasChanged == &waveformCB2)
     {
-        pParams->filterLFO.waveform = wf;
+        pParams->filterLFO.waveform.fromComboBox(*comboBoxThatHasChanged);
     }
     pSound->parameterChanged();
 }
@@ -140,11 +132,11 @@ void GuiLFOTab::notify()
 {
     SynthParameters* pParams = pSound->pParams;
 
-    waveformCB1.setSelectedItemIndex(int(pParams->pitchLFO.waveform - SynthOscillatorBase::kSine));
+    pParams->pitchLFO.waveform.toComboBox(waveformCB1);
     freqSlider1.setValue(pParams->pitchLFO.freqHz);
     amountSlider1.setValue(pParams->pitchLFO.amount);
 
-    waveformCB2.setSelectedItemIndex(int(pParams->filterLFO.waveform - SynthOscillatorBase::kSine));
+    pParams->filterLFO.waveform.toComboBox(waveformCB2);
     freqSlider2.setValue(pParams->filterLFO.freqHz);
     amountSlider2.setValue(100.0 * pParams->filterLFO.amount);    // fraction -> percent
 }

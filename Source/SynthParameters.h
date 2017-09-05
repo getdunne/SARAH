@@ -1,16 +1,13 @@
 #pragma once
 #include "../JuceLibraryCode/JuceHeader.h"
+#include "SynthWaveform.h"
 #include "SynthOscillatorBase.h"
-
-#define kMaxProgramNameLength 24    // max length supported by VST2
-#define kProgNameBufferLength 25    // 1 extra byte for null terminator
 
 class SynthParameters : public SynthOscillatorBase
 {
 public:
     // program name
-    typedef char ProgramName[kProgNameBufferLength];
-    ProgramName programName;
+    String programName;
 
     // main
     struct MainParams {
@@ -22,7 +19,7 @@ public:
     
     // oscillators
     struct OscillatorParams {
-        WaveformEnum waveform;
+        SynthWaveform waveform;
         int pitchOffsetSemitones;
         double detuneOffsetCents;
     } osc1, osc2;
@@ -44,7 +41,7 @@ public:
 
     // LFOs
     struct LFOParams {
-        WaveformEnum waveform;
+        SynthWaveform waveform;
         double freqHz;
         double amount;        // cents for pitchLFO, percent for filterLFO
     } pitchLFO, filterLFO;

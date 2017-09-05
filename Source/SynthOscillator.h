@@ -16,6 +16,6 @@ private:
     int noteNumber;
     float waveTable[2 * fftSize];
 
-    float filterCutoff;            // a fraction [0.0, 1,0]
+    float filterCutoff;           // a fraction [0.0, 1,0]
     float filterSlope;            // dB per octave
 };

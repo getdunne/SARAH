@@ -20,7 +20,7 @@ public:
     void notify();
 
 private:
-    ScopedPointer<TabbedComponent> tabbedComponent;
+    TabbedComponent tabbedComponent;
     GuiMainTab mainTab;
     GuiOscTab oscTab;
     GuiAmpEgTab ampEgTab;

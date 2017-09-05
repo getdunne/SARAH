@@ -1,6 +1,5 @@
 #include "SynthLFO.h"
 #include <cmath>
-#include "../JuceLibraryCode/JuceHeader.h"    // only for double_Pi constant
 
 // Square/Triangle/Sawtooth waves are computed directly; sine requires
 // table lookup with linear interpolation.
@@ -24,18 +23,18 @@ float SynthLFO::getSample()
 {
     float sample = 0.0f;
 
-    switch (waveForm)
+    switch (waveform.index)
     {
-    case kSine:
+    case SynthWaveform::kSine:
         sample = getSineSample();
         break;
-    case kSquare:
+    case SynthWaveform::kSquare:
         sample = (phase <= 0.5f) ? 1.0f : -1.0f;
         break;
-    case kTriangle:
+    case SynthWaveform::kTriangle:
         sample = 2.0f * (0.5f - std::fabs(phase - 0.5f)) - 1.0f;
         break;
-    case kSawtooth:
+    case SynthWaveform::kSawtooth:
         sample = 2.0f * phase - 1.0f;
         break;
     }

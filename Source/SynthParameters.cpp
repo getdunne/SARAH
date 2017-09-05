@@ -2,17 +2,15 @@
 
 void SynthParameters::setDefaultValues()
 {
-    sprintf(programName, "Default");
+    programName = "Default";
     main.masterLevel = 0.15;
     main.oscBlend= 0.5;
     main.pitchBendUpSemitones = 2;
     main.pitchBendDownSemitones = 2;
 
-    osc1.waveform = kSine;
     osc1.pitchOffsetSemitones = 0;
     osc1.detuneOffsetCents = -10.0;
 
-    osc2.waveform = kSine;
     osc2.pitchOffsetSemitones = 0;
     osc2.detuneOffsetCents = +10.0;
 
@@ -47,11 +45,9 @@ void SynthParameters::setDefaultValues()
     pitch2EG.sustainLevel = 0.0;
     pitch2EG.releaseTimeSeconds = 0.0;
 
-    pitchLFO.waveform = kSine;
     pitchLFO.freqHz = 5.0;
     pitchLFO.amount = 0.0;
 
-    filterLFO.waveform = kSine;
     filterLFO.freqHz = 5.0;
     filterLFO.amount = 0.0;
 }
@@ -60,67 +56,67 @@ XmlElement* SynthParameters::getXml()
 {
     XmlElement* xml = new XmlElement("program");
 
-    xml->setAttribute(String("name"), String(programName));
+    xml->setAttribute("name", programName);
 
-    xml->setAttribute(String("masterLevel"), main.masterLevel);
-    xml->setAttribute(String("oscBlend"), main.oscBlend);
-    xml->setAttribute(String("pitchBendUpSemitones"), main.pitchBendUpSemitones);
-    xml->setAttribute(String("pitchBendDownSemitones"), main.pitchBendDownSemitones);
+    xml->setAttribute("masterLevel", main.masterLevel);
+    xml->setAttribute("oscBlend", main.oscBlend);
+    xml->setAttribute("pitchBendUpSemitones", main.pitchBendUpSemitones);
+    xml->setAttribute("pitchBendDownSemitones", main.pitchBendDownSemitones);
 
-    xml->setAttribute(String("osc1Waveform"), SynthOscillatorBase::WaveformName(osc1.waveform));
-    xml->setAttribute(String("osc1PitchOffsetSemitones"), osc2.pitchOffsetSemitones);
-    xml->setAttribute(String("osc1DetuneOffsetCents"), osc1.detuneOffsetCents);
+    xml->setAttribute("osc1Waveform", osc1.waveform.name());
+    xml->setAttribute("osc1PitchOffsetSemitones", osc2.pitchOffsetSemitones);
+    xml->setAttribute("osc1DetuneOffsetCents", osc1.detuneOffsetCents);
 
-    xml->setAttribute(String("osc2Waveform"), SynthOscillatorBase::WaveformName(osc2.waveform));
-    xml->setAttribute(String("osc2PitchOffsetSemitones"), osc2.pitchOffsetSemitones);
-    xml->setAttribute(String("osc2DetuneOffsetCents"), osc2.detuneOffsetCents);
+    xml->setAttribute("osc2Waveform", osc2.waveform.name());
+    xml->setAttribute("osc2PitchOffsetSemitones", osc2.pitchOffsetSemitones);
+    xml->setAttribute("osc2DetuneOffsetCents", osc2.detuneOffsetCents);
 
-    xml->setAttribute(String("ampEgAttackTimeSeconds"), ampEG.attackTimeSeconds);
-    xml->setAttribute(String("ampEgDecayTimeSeconds"), ampEG.decayTimeSeconds);
-    xml->setAttribute(String("ampEgSustainLevel"), ampEG.sustainLevel);
-    xml->setAttribute(String("ampEgReleaseTimeSeconds"), ampEG.releaseTimeSeconds);
+    xml->setAttribute("ampEgAttackTimeSeconds", ampEG.attackTimeSeconds);
+    xml->setAttribute("ampEgDecayTimeSeconds", ampEG.decayTimeSeconds);
+    xml->setAttribute("ampEgSustainLevel", ampEG.sustainLevel);
+    xml->setAttribute("ampEgReleaseTimeSeconds", ampEG.releaseTimeSeconds);
 
-    xml->setAttribute(String("flt1Cutoff"), filter1.cutoff);
-    xml->setAttribute(String("flt1dBperOctave"), filter1.dBperOctave);
-    xml->setAttribute(String("flt1EnvAmount"), filter1.envAmount);
-    xml->setAttribute(String("flt1EgAttackTimeSeconds"), filter1EG.attackTimeSeconds);
-    xml->setAttribute(String("flt1EgDecayTimeSeconds"), filter1EG.decayTimeSeconds);
-    xml->setAttribute(String("flt1EgSustainLevel"), filter1EG.sustainLevel);
-    xml->setAttribute(String("flt1EgReleaseTimeSeconds"), filter1EG.releaseTimeSeconds);
+    xml->setAttribute("flt1Cutoff", filter1.cutoff);
+    xml->setAttribute("flt1dBperOctave", filter1.dBperOctave);
+    xml->setAttribute("flt1EnvAmount", filter1.envAmount);
+    xml->setAttribute("flt1EgAttackTimeSeconds", filter1EG.attackTimeSeconds);
+    xml->setAttribute("flt1EgDecayTimeSeconds", filter1EG.decayTimeSeconds);
+    xml->setAttribute("flt1EgSustainLevel", filter1EG.sustainLevel);
+    xml->setAttribute("flt1EgReleaseTimeSeconds", filter1EG.releaseTimeSeconds);
 
-    xml->setAttribute(String("flt2Cutoff"), filter2.cutoff);
-    xml->setAttribute(String("flt2dBperOctave"), filter2.dBperOctave);
-    xml->setAttribute(String("flt2EnvAmount"), filter2.envAmount);
-    xml->setAttribute(String("flt2EgAttackTimeSeconds"), filter2EG.attackTimeSeconds);
-    xml->setAttribute(String("flt2EgDecayTimeSeconds"), filter2EG.decayTimeSeconds);
-    xml->setAttribute(String("flt2EgSustainLevel"), filter2EG.sustainLevel);
-    xml->setAttribute(String("flt2EgReleaseTimeSeconds"), filter2EG.releaseTimeSeconds);
+    xml->setAttribute("flt2Cutoff", filter2.cutoff);
+    xml->setAttribute("flt2dBperOctave", filter2.dBperOctave);
+    xml->setAttribute("flt2EnvAmount", filter2.envAmount);
+    xml->setAttribute("flt2EgAttackTimeSeconds", filter2EG.attackTimeSeconds);
+    xml->setAttribute("flt2EgDecayTimeSeconds", filter2EG.decayTimeSeconds);
+    xml->setAttribute("flt2EgSustainLevel", filter2EG.sustainLevel);
+    xml->setAttribute("flt2EgReleaseTimeSeconds", filter2EG.releaseTimeSeconds);
 
-    xml->setAttribute(String("pitchLfoWaveform"), SynthOscillatorBase::WaveformName(pitchLFO.waveform));
-    xml->setAttribute(String("pitchLfoFreqHz"), pitchLFO.freqHz);
-    xml->setAttribute(String("pitchLfoAmount"), pitchLFO.amount);
+    xml->setAttribute("pitchLfoWaveform", pitchLFO.waveform.name());
+    xml->setAttribute("pitchLfoFreqHz", pitchLFO.freqHz);
+    xml->setAttribute("pitchLfoAmount", pitchLFO.amount);
 
-    xml->setAttribute(String("filterLfoWaveform"), SynthOscillatorBase::WaveformName(filterLFO.waveform));
-    xml->setAttribute(String("filterLfoFreqHz"), filterLFO.freqHz);
-    xml->setAttribute(String("filterLfoAmount"), filterLFO.amount);
+    xml->setAttribute("filterLfoWaveform", filterLFO.waveform.name());
+    xml->setAttribute("filterLfoFreqHz", filterLFO.freqHz);
+    xml->setAttribute("filterLfoAmount", filterLFO.amount);
 
     return xml;
 }
 
 void SynthParameters::putXml(XmlElement* xml)
 {
-    xml->getStringAttribute("name").copyToUTF8(programName, sizeof(programName));
+    programName = xml->getStringAttribute("name");
 
     main.masterLevel = xml->getDoubleAttribute("masterLevel");
     main.oscBlend = xml->getDoubleAttribute("oscBlend");
     main.pitchBendUpSemitones = xml->getIntAttribute("pitchBendUpSemitones");
     main.pitchBendDownSemitones = xml->getIntAttribute("pitchBendDownSemitones");
 
-    osc1.waveform = SynthOscillatorBase::WaveformEnumFromName(xml->getStringAttribute("osc1Waveform"));
+    osc1.waveform.setFromName(xml->getStringAttribute("osc1Waveform"));
     osc2.pitchOffsetSemitones = xml->getIntAttribute("osc1PitchOffsetSemitones");
     osc1.detuneOffsetCents = xml->getDoubleAttribute("osc1DetuneOffsetCents");
 
-    osc2.waveform = SynthOscillatorBase::WaveformEnumFromName(xml->getStringAttribute("osc2Waveform"));
+    osc2.waveform.setFromName(xml->getStringAttribute("osc2Waveform"));
     osc2.pitchOffsetSemitones = xml->getIntAttribute("osc2PitchOffsetSemitones");
     osc2.detuneOffsetCents = xml->getDoubleAttribute("osc2DetuneOffsetCents");
 
@@ -145,11 +141,11 @@ void SynthParameters::putXml(XmlElement* xml)
     filter2EG.sustainLevel = xml->getDoubleAttribute("flt2EgSustainLevel");
     filter2EG.releaseTimeSeconds = xml->getDoubleAttribute("flt2EgReleaseTimeSeconds");
 
-    pitchLFO.waveform = SynthOscillatorBase::WaveformEnumFromName(xml->getStringAttribute("pitchLfoWaveform"));
+    pitchLFO.waveform.setFromName(xml->getStringAttribute("pitchLfoWaveform"));
     pitchLFO.freqHz = xml->getIntAttribute("pitchLfoFreqHz");
     pitchLFO.amount = xml->getDoubleAttribute("pitchLfoAmount");
 
-    filterLFO.waveform = SynthOscillatorBase::WaveformEnumFromName(xml->getStringAttribute("filterLfoWaveform"));
+    filterLFO.waveform.setFromName(xml->getStringAttribute("filterLfoWaveform"));
     filterLFO.freqHz = xml->getIntAttribute("filterLfoFreqHz");
     filterLFO.amount = xml->getDoubleAttribute("filterLfoAmount");
 }

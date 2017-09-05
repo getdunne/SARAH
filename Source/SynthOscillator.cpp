@@ -17,14 +17,15 @@ void SynthOscillator::setFrequency(double sampleRateHz, int midiNoteNumber, doub
     int maxHarmonicToRetain = int(1.0 / (2.0 * phaseDelta));
     if (maxHarmonicToRetain >= fftSize / 2) maxHarmonicToRetain = fftSize / 2;
 
-    if (noteNumber != midiNoteNumber && waveForm > kSine)
+    if (noteNumber != midiNoteNumber && waveform.isSine())
     {
         zeromem(waveTable, sizeof(waveTable));
         for (int ip = 1; ip < maxHarmonicToRetain; ip++)
         {
             int in = fftSize - ip;
-            memcpy(waveTable + ip, fftWave[waveForm] + ip, 2 * sizeof(float)); // positive frequency coefficient
-            memcpy(waveTable + in, fftWave[waveForm] + in, 2 * sizeof(float)); // negative frequency coefficient
+            float* fftBuffer = SynthOscillatorBase::getFourierTable(waveform);
+            memcpy(waveTable + ip, fftBuffer + ip, 2 * sizeof(float)); // positive frequency coefficient
+            memcpy(waveTable + in, fftBuffer + in, 2 * sizeof(float)); // negative frequency coefficient
         }
         inverseFFT->performRealOnlyInverseTransform(waveTable);
     }
@@ -39,7 +40,7 @@ void SynthOscillator::setFilterParams(float cutoff, float dBPerOctave)
 
 void SynthOscillator::setFilterCutoffDelta(float fcDelta)
 {
-    if (waveForm == kSine) return;
+    if (waveform.isSine()) return;
 
     zeromem(waveTable, sizeof(waveTable));
     int maxHarmonicToRetain = int(1.0 / (2.0 * phaseDelta));
@@ -50,8 +51,9 @@ void SynthOscillator::setFilterCutoffDelta(float fcDelta)
     for (int ip = 1; ip < maxHarmonicToRetain; ip++)
     {
         int in = fftSize - ip;
-        memcpy(waveTable + ip, fftWave[waveForm] + ip, 2 * sizeof(float)); // positive frequency coefficient
-        memcpy(waveTable + in, fftWave[waveForm] + in, 2 * sizeof(float)); // negative frequency coefficient
+        float* fftBuffer = SynthOscillatorBase::getFourierTable(waveform);
+        memcpy(waveTable + ip, fftBuffer + ip, 2 * sizeof(float)); // positive frequency coefficient
+        memcpy(waveTable + in, fftBuffer + in, 2 * sizeof(float)); // negative frequency coefficient
 
         float fv = 1.0f;
         if (ip > int(cutoffHarmonic)) fv = std::pow(ip / cutoffHarmonic, -filterSlope / 6.0f);
@@ -71,10 +73,6 @@ float SynthOscillator::getSample()
     phase += phaseDelta;
     while (phase > 1.0) phase -= 1.0;
 
-    if (waveForm == kSine)
-        return sineTable[sampleIndex];
-    if (waveForm > kSine)
-        return waveTable[sampleIndex];
-    else
-        return 0.0f;
+    if (waveform.isSine()) return sineTable[sampleIndex];
+    else return waveTable[sampleIndex];
 }

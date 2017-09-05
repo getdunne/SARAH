@@ -1,7 +1,8 @@
 #include "GuiTabs.h"
 
 GuiTabs::GuiTabs (SynthSound* pSynthSound)
-    : mainTab(pSynthSound)
+    : tabbedComponent(TabbedButtonBar::TabsAtTop)
+    , mainTab(pSynthSound)
     , oscTab(pSynthSound)
     , ampEgTab(pSynthSound)
     , filter1Tab(pSynthSound, 0)
@@ -9,16 +10,16 @@ GuiTabs::GuiTabs (SynthSound* pSynthSound)
     , pitchEgTab(pSynthSound)
     , lfoTab(pSynthSound)
 {
-    addAndMakeVisible (tabbedComponent = new TabbedComponent (TabbedButtonBar::TabsAtTop));
-    tabbedComponent->setTabBarDepth (32);
-    tabbedComponent->addTab(TRANS("Main"), Colours::lightgrey, &mainTab, true);
-    tabbedComponent->addTab(TRANS("Osc"), Colours::lightgrey, &oscTab, true);
-    tabbedComponent->addTab(TRANS("Amp"), Colours::lightgrey, &ampEgTab, true);
-    tabbedComponent->addTab(TRANS("Flt1"), Colours::lightgrey, &filter1Tab, true);
-    tabbedComponent->addTab(TRANS("Flt2"), Colours::lightgrey, &filter2Tab, true);
-    tabbedComponent->addTab(TRANS("P.EG"), Colours::lightgrey, &pitchEgTab, true);
-    tabbedComponent->addTab(TRANS("LFOs"), Colours::lightgrey, &lfoTab, true);
-    tabbedComponent->setCurrentTabIndex(0);
+    addAndMakeVisible(tabbedComponent);
+    tabbedComponent.setTabBarDepth(32);
+    tabbedComponent.addTab(TRANS("Main"), Colours::lightgrey, &mainTab, true);
+    tabbedComponent.addTab(TRANS("Osc"), Colours::lightgrey, &oscTab, true);
+    tabbedComponent.addTab(TRANS("Amp"), Colours::lightgrey, &ampEgTab, true);
+    tabbedComponent.addTab(TRANS("Flt1"), Colours::lightgrey, &filter1Tab, true);
+    tabbedComponent.addTab(TRANS("Flt2"), Colours::lightgrey, &filter2Tab, true);
+    tabbedComponent.addTab(TRANS("P.EG"), Colours::lightgrey, &pitchEgTab, true);
+    tabbedComponent.addTab(TRANS("LFOs"), Colours::lightgrey, &lfoTab, true);
+    tabbedComponent.setCurrentTabIndex(0);
 }
 
 GuiTabs::~GuiTabs()
@@ -33,7 +34,7 @@ void GuiTabs::paint (Graphics& g)
 
 void GuiTabs::resized()
 {
-    tabbedComponent->setBounds (0, 0, proportionOfWidth (1.0000f), proportionOfHeight (1.0000f));
+    tabbedComponent.setBounds (0, 0, proportionOfWidth (1.0000f), proportionOfHeight (1.0000f));
 }
 
 void GuiTabs::notify()

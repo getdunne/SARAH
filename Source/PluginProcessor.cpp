@@ -95,12 +95,12 @@ void SARAHAudioProcessor::setCurrentProgram (int index)
 
 const String SARAHAudioProcessor::getProgramName (int index)
 {
-    return String(programBank[index].programName);
+    return programBank[index].programName;
 }
 
 void SARAHAudioProcessor::changeProgramName (int index, const String& newName)
 {
-    newName.copyToUTF8(programBank[index].programName, kMaxProgramNameLength);
+    programBank[index].programName = newName;
     sendChangeMessage();
 }
 
