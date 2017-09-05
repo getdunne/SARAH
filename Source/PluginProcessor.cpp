@@ -10,7 +10,7 @@ SARAHAudioProcessor::SARAHAudioProcessor()
 
     //formatManager.registerBasicFormats();
 
-    for (int i = 0; i < maxNumberOfVoices; ++i)
+    for (int i = 0; i < kNumberOfVoices; ++i)
         //synth.addVoice(new SamplerVoice());
         synth.addVoice(new SynthVoice());
 

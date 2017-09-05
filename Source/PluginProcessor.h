@@ -4,18 +4,11 @@
 #include "SynthSound.h"
 #include "Synth.h"
 
-#define kNumberOfPrograms 128
-
 class SARAHAudioProcessor
     : public AudioProcessor
     , public ChangeBroadcaster
 {
 public:
-    enum
-    {
-        maxNumberOfVoices = 16
-    };
-
     SARAHAudioProcessor();
     virtual ~SARAHAudioProcessor();
 
@@ -48,7 +41,9 @@ public:
     SynthSound* getSound() { return pSound; }
 
 private:
-    //AudioFormatManager formatManager;
+    static const int kNumberOfPrograms = 128;
+    static const int kNumberOfVoices = 16;
+
     Synth synth;
     SynthSound* pSound;
     SynthParameters programBank[kNumberOfPrograms];
