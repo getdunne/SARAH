@@ -33,6 +33,7 @@
 		C085C79348320DEB9CF3A06B = {isa = PBXBuildFile; fileRef = C065BCBBA4FA38E5E3E76261; };
 		5C8C79A176D11C9B854E271A = {isa = PBXBuildFile; fileRef = F1C010C18DCF3996F05EA3B0; };
 		3D1A00F19B5B6F468A8FFD3A = {isa = PBXBuildFile; fileRef = 949337722E1391C22BA3C811; };
+		C80F83FF1B8AA58A8BFFB607 = {isa = PBXBuildFile; fileRef = EEB7FFFC3AB479FDD034A436; };
 		BBA780966B0A251D85D62A2B = {isa = PBXBuildFile; fileRef = A72E0362C82C189BF9F64C41; };
 		D9F60D3F34CE48BBF61812A7 = {isa = PBXBuildFile; fileRef = E87890CB251E395A3C4E8B9A; };
 		839BA1D0F29D35A5AC0C3C02 = {isa = PBXBuildFile; fileRef = CDE5715B11AF0779E235B31A; };
@@ -143,9 +144,11 @@
 		D94A330DD7B82AF5E408583F = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGL.framework; path = System/Library/Frameworks/OpenGL.framework; sourceTree = SDKROOT; };
 		DB59E0070A2D44C9ADC9B069 = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
 		DBD0D5191FE269D44607CF79 = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; name = "include_juce_audio_plugin_client_AU_2.mm"; path = "../../JuceLibraryCode/include_juce_audio_plugin_client_AU_2.mm"; sourceTree = "SOURCE_ROOT"; };
+		DEA5BCFAD1DC08C65AED620B = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = SynthWaveform.h; path = ../../Source/SynthWaveform.h; sourceTree = "SOURCE_ROOT"; };
 		E321EB26E807C7B47B7D2B81 = {isa = PBXFileReference; lastKnownFileType = file; name = "juce_gui_extra"; path = "../../JuceLibraryCode/modules/juce_gui_extra"; sourceTree = "SOURCE_ROOT"; };
 		E64C378FAFBF617748467C1F = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = SynthVoice.h; path = ../../Source/SynthVoice.h; sourceTree = "SOURCE_ROOT"; };
 		E87890CB251E395A3C4E8B9A = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = GuiFilterTab.cpp; path = ../../Source/GuiFilterTab.cpp; sourceTree = "SOURCE_ROOT"; };
+		EEB7FFFC3AB479FDD034A436 = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = SynthWaveform.cpp; path = ../../Source/SynthWaveform.cpp; sourceTree = "SOURCE_ROOT"; };
 		F0139C308A7591E45D8E1825 = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = GuiFilterTab.h; path = ../../Source/GuiFilterTab.h; sourceTree = "SOURCE_ROOT"; };
 		F1C010C18DCF3996F05EA3B0 = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = SynthSound.cpp; path = ../../Source/SynthSound.cpp; sourceTree = "SOURCE_ROOT"; };
 		F7D2525765168EF9761B6A31 = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = SynthLFO.h; path = ../../Source/SynthLFO.h; sourceTree = "SOURCE_ROOT"; };
@@ -172,7 +175,9 @@
 					F1C010C18DCF3996F05EA3B0,
 					B51E9E1EAB2B231125B35588,
 					949337722E1391C22BA3C811,
-					E64C378FAFBF617748467C1F, ); name = Synthesizer; sourceTree = "<group>"; };
+					E64C378FAFBF617748467C1F,
+					EEB7FFFC3AB479FDD034A436,
+					DEA5BCFAD1DC08C65AED620B, ); name = Synthesizer; sourceTree = "<group>"; };
 		6B2EFF933B54D45E52A27446 = {isa = PBXGroup; children = (
 					A72E0362C82C189BF9F64C41,
 					9494D75A8455F67486EEDF23,
@@ -631,6 +636,7 @@
 					C085C79348320DEB9CF3A06B,
 					5C8C79A176D11C9B854E271A,
 					3D1A00F19B5B6F468A8FFD3A,
+					C80F83FF1B8AA58A8BFFB607,
 					BBA780966B0A251D85D62A2B,
 					D9F60D3F34CE48BBF61812A7,
 					839BA1D0F29D35A5AC0C3C02,

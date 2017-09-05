@@ -48,6 +48,9 @@
       <FILE id="DdoSeZ" name="SynthSound.h" compile="0" resource="0" file="Source/SynthSound.h"/>
       <FILE id="CwYGy5" name="SynthVoice.cpp" compile="1" resource="0" file="Source/SynthVoice.cpp"/>
       <FILE id="RXvTJ4" name="SynthVoice.h" compile="0" resource="0" file="Source/SynthVoice.h"/>
+      <FILE id="IcasY7" name="SynthWaveform.cpp" compile="1" resource="0"
+            file="Source/SynthWaveform.cpp"/>
+      <FILE id="P9XdCt" name="SynthWaveform.h" compile="0" resource="0" file="Source/SynthWaveform.h"/>
     </GROUP>
     <GROUP id="{60F36A42-6911-9BD2-E13B-D6F97561CD19}" name="Editor">
       <FILE id="Okf9B4" name="GuiAmpEgTab.cpp" compile="1" resource="0" file="Source/GuiAmpEgTab.cpp"/>
