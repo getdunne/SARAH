@@ -8,8 +8,8 @@ private:
         kSine = -1,
         kTriangle, kSquare, kSawtooth,  // valid for use as array indices
 
-        kNumberOfWaveformsRequiringFFT,
-        kNumberOfWaveformTypes
+        kNumberOfWaveformsRequiringFFT, // waveform-types count, excluding sine
+        kNumberOfWaveformTypes          // total waveform-types count
     } index;
     
     friend class SynthOscillatorBase;
