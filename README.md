@@ -13,3 +13,6 @@ I welcome feedback on the [JUCE Forum](https://forum.juce.com/), where you can f
 ## Detailed documentation ##
 
 [Go here for more detailed information](http://getdunne.net/wiki/doku.php?id=sarah) about this project.
+
+Shane Dunne
+August, 2017
