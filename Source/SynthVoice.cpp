@@ -65,7 +65,7 @@ void SynthVoice::setup (bool pitchBendOnly)
     if (!pitchBendOnly)
     {
         osc1Level.reset(sampleRateHz, ampEG.isRunning() ? 0.1 : 0.0);
-        osc1Level.setValue(float(pParams->main.oscBlend * masterLevel));
+        osc1Level.setValue(float(1.0 - pParams->main.oscBlend) * masterLevel);
     }
 
     osc2.setFrequency(sampleRateHz, midiNote + pParams->osc2.pitchOffsetSemitones,
@@ -73,7 +73,7 @@ void SynthVoice::setup (bool pitchBendOnly)
     if (!pitchBendOnly)
     {
         osc2Level.reset(sampleRateHz, ampEG.isRunning() ? 0.1 : 0.0);
-        osc2Level.setValue(float((1.0 - pParams->main.oscBlend) * masterLevel));
+        osc2Level.setValue(float(pParams->main.oscBlend * masterLevel));
     }
 
     if (!pitchBendOnly)

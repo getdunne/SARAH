@@ -3,53 +3,53 @@
 void SynthParameters::setDefaultValues()
 {
     programName = "Default";
-    main.masterLevel = 0.15;
-    main.oscBlend= 0.5;
+    main.masterLevel = 0.15f;
+    main.oscBlend= 0.5f;
     main.pitchBendUpSemitones = 2;
     main.pitchBendDownSemitones = 2;
 
     osc1.pitchOffsetSemitones = 0;
-    osc1.detuneOffsetCents = -10.0;
+    osc1.detuneOffsetCents = -10.0f;
 
     osc2.pitchOffsetSemitones = 0;
-    osc2.detuneOffsetCents = +10.0;
+    osc2.detuneOffsetCents = +10.0f;
 
-    ampEG.attackTimeSeconds = 0.1;
-    ampEG.decayTimeSeconds = 0.1;
-    ampEG.sustainLevel = 0.8;
-    ampEG.releaseTimeSeconds = 0.5;
+    ampEG.attackTimeSeconds = 0.1f;
+    ampEG.decayTimeSeconds = 0.1f;
+    ampEG.sustainLevel = 0.8f;
+    ampEG.releaseTimeSeconds = 0.5f;
 
-    filter1.cutoff = 1.0;
-    filter1.dBperOctave = 12.0;
+    filter1.cutoff = 1.0f;
+    filter1.dBperOctave = 12.0f;
     filter1.envAmount = 0.0f;
-    filter1EG.attackTimeSeconds = 0.0;
-    filter1EG.decayTimeSeconds = 0.0;
-    filter1EG.sustainLevel = 1.0;
-    filter1EG.releaseTimeSeconds = 0.0;
+    filter1EG.attackTimeSeconds = 0.0f;
+    filter1EG.decayTimeSeconds = 0.0f;
+    filter1EG.sustainLevel = 1.0f;
+    filter1EG.releaseTimeSeconds = 0.0f;
 
-    filter2.cutoff = 1.0;
-    filter2.dBperOctave = 12.0;
+    filter2.cutoff = 1.0f;
+    filter2.dBperOctave = 12.0f;
     filter2.envAmount = 0.0f;
-    filter2EG.attackTimeSeconds = 0.0;
-    filter2EG.decayTimeSeconds = 0.0;
-    filter2EG.sustainLevel = 1.0;
-    filter2EG.releaseTimeSeconds = 0.0;
+    filter2EG.attackTimeSeconds = 0.0f;
+    filter2EG.decayTimeSeconds = 0.0f;
+    filter2EG.sustainLevel = 1.0f;
+    filter2EG.releaseTimeSeconds = 0.0f;
 
-    pitch1EG.attackTimeSeconds = 0.0;
-    pitch1EG.decayTimeSeconds = 0.0;
-    pitch1EG.sustainLevel = 0.0;
-    pitch1EG.releaseTimeSeconds = 0.0;
+    pitch1EG.attackTimeSeconds = 0.0f;
+    pitch1EG.decayTimeSeconds = 0.0f;
+    pitch1EG.sustainLevel = 0.0f;
+    pitch1EG.releaseTimeSeconds = 0.0f;
 
-    pitch2EG.attackTimeSeconds = 0.0;
-    pitch2EG.decayTimeSeconds = 0.0;
-    pitch2EG.sustainLevel = 0.0;
-    pitch2EG.releaseTimeSeconds = 0.0;
+    pitch2EG.attackTimeSeconds = 0.0f;
+    pitch2EG.decayTimeSeconds = 0.0f;
+    pitch2EG.sustainLevel = 0.0f;
+    pitch2EG.releaseTimeSeconds = 0.0f;
 
-    pitchLFO.freqHz = 5.0;
-    pitchLFO.amount = 0.0;
+    pitchLFO.freqHz = 5.0f;
+    pitchLFO.amount = 0.0f;
 
-    filterLFO.freqHz = 5.0;
-    filterLFO.amount = 0.0;
+    filterLFO.freqHz = 5.0f;
+    filterLFO.amount = 0.0f;
 }
 
 XmlElement* SynthParameters::getXml()
@@ -107,45 +107,45 @@ void SynthParameters::putXml(XmlElement* xml)
 {
     programName = xml->getStringAttribute("name");
 
-    main.masterLevel = xml->getDoubleAttribute("masterLevel");
-    main.oscBlend = xml->getDoubleAttribute("oscBlend");
+    main.masterLevel = (float)xml->getDoubleAttribute("masterLevel");
+    main.oscBlend = (float)xml->getDoubleAttribute("oscBlend");
     main.pitchBendUpSemitones = xml->getIntAttribute("pitchBendUpSemitones");
     main.pitchBendDownSemitones = xml->getIntAttribute("pitchBendDownSemitones");
 
     osc1.waveform.setFromName(xml->getStringAttribute("osc1Waveform"));
     osc2.pitchOffsetSemitones = xml->getIntAttribute("osc1PitchOffsetSemitones");
-    osc1.detuneOffsetCents = xml->getDoubleAttribute("osc1DetuneOffsetCents");
+    osc1.detuneOffsetCents = (float)xml->getDoubleAttribute("osc1DetuneOffsetCents");
 
     osc2.waveform.setFromName(xml->getStringAttribute("osc2Waveform"));
     osc2.pitchOffsetSemitones = xml->getIntAttribute("osc2PitchOffsetSemitones");
-    osc2.detuneOffsetCents = xml->getDoubleAttribute("osc2DetuneOffsetCents");
+    osc2.detuneOffsetCents = (float)xml->getDoubleAttribute("osc2DetuneOffsetCents");
 
-    ampEG.attackTimeSeconds = xml->getDoubleAttribute("ampEgAttackTimeSeconds");
-    ampEG.decayTimeSeconds = xml->getDoubleAttribute("ampEgDecayTimeSeconds");
-    ampEG.sustainLevel = xml->getDoubleAttribute("ampEgSustainLevel");
-    ampEG.releaseTimeSeconds = xml->getDoubleAttribute("ampEgReleaseTimeSeconds");
+    ampEG.attackTimeSeconds = (float)xml->getDoubleAttribute("ampEgAttackTimeSeconds");
+    ampEG.decayTimeSeconds = (float)xml->getDoubleAttribute("ampEgDecayTimeSeconds");
+    ampEG.sustainLevel = (float)xml->getDoubleAttribute("ampEgSustainLevel");
+    ampEG.releaseTimeSeconds = (float)xml->getDoubleAttribute("ampEgReleaseTimeSeconds");
 
-    filter1.cutoff = xml->getDoubleAttribute("flt1Cutoff");
-    filter1.dBperOctave = xml->getDoubleAttribute("flt1dBperOctave");
-    filter1.envAmount = xml->getDoubleAttribute("flt1EnvAmount");
-    filter1EG.attackTimeSeconds = xml->getDoubleAttribute("flt1EgAttackTimeSeconds");
-    filter1EG.decayTimeSeconds = xml->getDoubleAttribute("flt1EgDecayTimeSeconds");
-    filter1EG.sustainLevel = xml->getDoubleAttribute("flt1EgSustainLevel");
-    filter1EG.releaseTimeSeconds = xml->getDoubleAttribute("flt1EgReleaseTimeSeconds");
+    filter1.cutoff = (float)xml->getDoubleAttribute("flt1Cutoff");
+    filter1.dBperOctave = (float)xml->getDoubleAttribute("flt1dBperOctave");
+    filter1.envAmount = (float)xml->getDoubleAttribute("flt1EnvAmount");
+    filter1EG.attackTimeSeconds = (float)xml->getDoubleAttribute("flt1EgAttackTimeSeconds");
+    filter1EG.decayTimeSeconds = (float)xml->getDoubleAttribute("flt1EgDecayTimeSeconds");
+    filter1EG.sustainLevel = (float)xml->getDoubleAttribute("flt1EgSustainLevel");
+    filter1EG.releaseTimeSeconds = (float)xml->getDoubleAttribute("flt1EgReleaseTimeSeconds");
 
-    filter2.cutoff = xml->getDoubleAttribute("flt2Cutoff");
-    filter2.dBperOctave = xml->getDoubleAttribute("flt2dBperOctave");
-    filter2.envAmount = xml->getDoubleAttribute("flt2EnvAmount");
-    filter2EG.attackTimeSeconds = xml->getDoubleAttribute("flt2EgAttackTimeSeconds");
-    filter2EG.decayTimeSeconds = xml->getDoubleAttribute("flt2EgDecayTimeSeconds");
-    filter2EG.sustainLevel = xml->getDoubleAttribute("flt2EgSustainLevel");
-    filter2EG.releaseTimeSeconds = xml->getDoubleAttribute("flt2EgReleaseTimeSeconds");
+    filter2.cutoff = (float)xml->getDoubleAttribute("flt2Cutoff");
+    filter2.dBperOctave = (float)xml->getDoubleAttribute("flt2dBperOctave");
+    filter2.envAmount = (float)xml->getDoubleAttribute("flt2EnvAmount");
+    filter2EG.attackTimeSeconds = (float)xml->getDoubleAttribute("flt2EgAttackTimeSeconds");
+    filter2EG.decayTimeSeconds = (float)xml->getDoubleAttribute("flt2EgDecayTimeSeconds");
+    filter2EG.sustainLevel = (float)xml->getDoubleAttribute("flt2EgSustainLevel");
+    filter2EG.releaseTimeSeconds = (float)xml->getDoubleAttribute("flt2EgReleaseTimeSeconds");
 
     pitchLFO.waveform.setFromName(xml->getStringAttribute("pitchLfoWaveform"));
-    pitchLFO.freqHz = xml->getIntAttribute("pitchLfoFreqHz");
-    pitchLFO.amount = xml->getDoubleAttribute("pitchLfoAmount");
+    pitchLFO.freqHz = (float)xml->getIntAttribute("pitchLfoFreqHz");
+    pitchLFO.amount = (float)xml->getDoubleAttribute("pitchLfoAmount");
 
     filterLFO.waveform.setFromName(xml->getStringAttribute("filterLfoWaveform"));
-    filterLFO.freqHz = xml->getIntAttribute("filterLfoFreqHz");
-    filterLFO.amount = xml->getDoubleAttribute("filterLfoAmount");
+    filterLFO.freqHz = (float)xml->getIntAttribute("filterLfoFreqHz");
+    filterLFO.amount = (float)xml->getDoubleAttribute("filterLfoAmount");
 }

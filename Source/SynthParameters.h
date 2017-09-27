@@ -11,8 +11,8 @@ public:
 
     // main
     struct MainParams {
-        double masterLevel;
-        double oscBlend;                        // [0.0, 1.0] relative osc1 level
+        float masterLevel;
+        float oscBlend;                        // [0.0, 1.0] relative osc1 level
         int pitchBendUpSemitones;
         int pitchBendDownSemitones;
     } main;
@@ -21,29 +21,29 @@ public:
     struct OscillatorParams {
         SynthWaveform waveform;
         int pitchOffsetSemitones;
-        double detuneOffsetCents;
+        float detuneOffsetCents;
     } osc1, osc2;
 
     // filters
     struct FilterParams {
-        double cutoff;                        // [0.0, 1.0]
-        double dBperOctave;
-        double envAmount;                    // [0.0, 1.0]
+        float cutoff;                        // [0.0, 1.0]
+        float dBperOctave;
+        float envAmount;                    // [0.0, 1.0]
     } filter1, filter2;
     
     // envelope generators
     struct EnvelopeParams {
-        double attackTimeSeconds;
-        double decayTimeSeconds;
-        double sustainLevel;                // [0.0, 1.0]
-        double releaseTimeSeconds;
+        float attackTimeSeconds;
+        float decayTimeSeconds;
+        float sustainLevel;                // [0.0, 1.0]
+        float releaseTimeSeconds;
     } ampEG, filter1EG, filter2EG, pitch1EG, pitch2EG;
 
     // LFOs
     struct LFOParams {
         SynthWaveform waveform;
-        double freqHz;
-        double amount;        // cents for pitchLFO, percent for filterLFO
+        float freqHz;
+        float amount;        // cents for pitchLFO, percent for filterLFO
     } pitchLFO, filterLFO;
 
 public:
