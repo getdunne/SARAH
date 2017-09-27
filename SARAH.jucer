@@ -52,24 +52,6 @@
             file="Source/SynthWaveform.cpp"/>
       <FILE id="P9XdCt" name="SynthWaveform.h" compile="0" resource="0" file="Source/SynthWaveform.h"/>
     </GROUP>
-    <GROUP id="{60F36A42-6911-9BD2-E13B-D6F97561CD19}" name="Editor">
-      <FILE id="Okf9B4" name="GuiAmpEgTab.cpp" compile="1" resource="0" file="Source/GuiAmpEgTab.cpp"/>
-      <FILE id="HbFR8x" name="GuiAmpEgTab.h" compile="0" resource="0" file="Source/GuiAmpEgTab.h"/>
-      <FILE id="OWzoRt" name="GuiFilterTab.cpp" compile="1" resource="0"
-            file="Source/GuiFilterTab.cpp"/>
-      <FILE id="IRhmeB" name="GuiFilterTab.h" compile="0" resource="0" file="Source/GuiFilterTab.h"/>
-      <FILE id="CaqODQ" name="GuiLFOTab.cpp" compile="1" resource="0" file="Source/GuiLFOTab.cpp"/>
-      <FILE id="Xaq2K0" name="GuiLFOTab.h" compile="0" resource="0" file="Source/GuiLFOTab.h"/>
-      <FILE id="JVb8h6" name="GuiMainTab.cpp" compile="1" resource="0" file="Source/GuiMainTab.cpp"/>
-      <FILE id="SDWZXt" name="GuiMainTab.h" compile="0" resource="0" file="Source/GuiMainTab.h"/>
-      <FILE id="VwIQbk" name="GuiOscTab.cpp" compile="1" resource="0" file="Source/GuiOscTab.cpp"/>
-      <FILE id="CnKopj" name="GuiOscTab.h" compile="0" resource="0" file="Source/GuiOscTab.h"/>
-      <FILE id="ZsE9MQ" name="GuiPitchEgTab.cpp" compile="1" resource="0"
-            file="Source/GuiPitchEgTab.cpp"/>
-      <FILE id="OJWXUG" name="GuiPitchEgTab.h" compile="0" resource="0" file="Source/GuiPitchEgTab.h"/>
-      <FILE id="DrCpMj" name="GuiTabs.cpp" compile="1" resource="0" file="Source/GuiTabs.cpp"/>
-      <FILE id="zVoOjs" name="GuiTabs.h" compile="0" resource="0" file="Source/GuiTabs.h"/>
-    </GROUP>
   </MAINGROUP>
   <EXPORTFORMATS>
     <VS2017 targetFolder="Builds/VisualStudio2017">

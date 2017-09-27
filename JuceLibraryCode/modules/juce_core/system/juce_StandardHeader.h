@@ -29,7 +29,7 @@
 */
 #define JUCE_MAJOR_VERSION      5
 #define JUCE_MINOR_VERSION      1
-#define JUCE_BUILDNUMBER        1
+#define JUCE_BUILDNUMBER        2
 
 /** Current Juce version number.
 
@@ -50,7 +50,6 @@
 #include <functional>
 #include <algorithm>
 #include <limits>
-#include <sstream>
 
 //==============================================================================
 #include "juce_CompilerSupport.h"
@@ -66,6 +65,7 @@
 
 #if JUCE_MAC || JUCE_IOS
  #include <libkern/OSAtomic.h>
+ #include <xlocale.h>
 #endif
 
 #if JUCE_LINUX

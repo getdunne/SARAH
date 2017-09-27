@@ -24,6 +24,9 @@
   ==============================================================================
 */
 
+namespace juce
+{
+
 namespace PopupMenuSettings
 {
     const int scrollZone = 24;
@@ -510,13 +513,21 @@ public:
 
     MouseSourceState& getMouseState (MouseInputSource source)
     {
-        for (auto* ms : mouseSourceStates)
-            if (ms->source == source)
-                return *ms;
+        MouseSourceState* mouseState = nullptr;
 
-        auto ms = new MouseSourceState (*this, source);
-        mouseSourceStates.add (ms);
-        return *ms;
+        for (auto* ms : mouseSourceStates)
+        {
+            if      (ms->source == source)                        mouseState = ms;
+            else if (ms->source.getType() != source.getType())    ms->stopTimer();
+        }
+
+        if (mouseState == nullptr)
+        {
+            mouseState = new MouseSourceState (*this, source);
+            mouseSourceStates.add (mouseState);
+        }
+
+        return *mouseState;
     }
 
     //==============================================================================
@@ -996,7 +1007,7 @@ public:
 };
 
 //==============================================================================
-class MouseSourceState  : private Timer
+class MouseSourceState  : public Timer
 {
 public:
     MouseSourceState (MenuWindow& w, MouseInputSource s)
@@ -1016,6 +1027,13 @@ public:
 
     void timerCallback() override
     {
+       #if JUCE_WINDOWS
+        // touch and pen devices on Windows send an offscreen mouse move after mouse up events
+        // but we don't want to forward these on as they will dismiss the menu
+        if ((source.isTouch() || source.isPen()) && ! isValidMousePosition())
+            return;
+       #endif
+
         if (window.windowIsStillValid())
             handleMousePosition (source.getScreenPosition().roundToInt());
     }
@@ -1206,6 +1224,20 @@ private:
 
         return true;
     }
+
+   #if JUCE_WINDOWS
+    bool isValidMousePosition()
+    {
+        auto screenPos = source.getScreenPosition();
+        auto localPos = (window.activeSubMenu == nullptr) ? window.getLocalPoint (nullptr, screenPos)
+                                                          : window.activeSubMenu->getLocalPoint (nullptr, screenPos);
+
+        if (localPos.x < 0 && localPos.y < 0)
+            return false;
+
+        return true;
+    }
+   #endif
 
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (MouseSourceState)
 };
@@ -1844,3 +1876,5 @@ PopupMenu::Item& PopupMenu::MenuItemIterator::getItem() const noexcept
     jassert (currentItem != nullptr);
     return *(currentItem);
 }
+
+} // namespace juce

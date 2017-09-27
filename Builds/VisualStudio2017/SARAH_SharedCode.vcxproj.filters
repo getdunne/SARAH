@@ -8,9 +8,6 @@
     <Filter Include="SARAH\Synthesizer">
       <UniqueIdentifier>{3EC6C5F6-4E82-4539-4419-1A15E9965095}</UniqueIdentifier>
     </Filter>
-    <Filter Include="SARAH\Editor">
-      <UniqueIdentifier>{ED62E5C8-6784-97A7-91E4-758988A00F8E}</UniqueIdentifier>
-    </Filter>
     <Filter Include="SARAH">
       <UniqueIdentifier>{8BE68030-BFD5-558A-267B-47F1B9E2FEA2}</UniqueIdentifier>
     </Filter>
@@ -438,27 +435,6 @@
     </ClCompile>
     <ClCompile Include="..\..\Source\SynthWaveform.cpp">
       <Filter>SARAH\Synthesizer</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Source\GuiAmpEgTab.cpp">
-      <Filter>SARAH\Editor</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Source\GuiFilterTab.cpp">
-      <Filter>SARAH\Editor</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Source\GuiLFOTab.cpp">
-      <Filter>SARAH\Editor</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Source\GuiMainTab.cpp">
-      <Filter>SARAH\Editor</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Source\GuiOscTab.cpp">
-      <Filter>SARAH\Editor</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Source\GuiPitchEgTab.cpp">
-      <Filter>SARAH\Editor</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Source\GuiTabs.cpp">
-      <Filter>SARAH\Editor</Filter>
     </ClCompile>
     <ClCompile Include="..\..\JuceLibraryCode\modules\juce_audio_basics\buffers\juce_AudioChannelSet.cpp">
       <Filter>Juce Modules\juce_audio_basics\buffers</Filter>
@@ -2376,27 +2352,6 @@
     <ClInclude Include="..\..\Source\SynthWaveform.h">
       <Filter>SARAH\Synthesizer</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Source\GuiAmpEgTab.h">
-      <Filter>SARAH\Editor</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Source\GuiFilterTab.h">
-      <Filter>SARAH\Editor</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Source\GuiLFOTab.h">
-      <Filter>SARAH\Editor</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Source\GuiMainTab.h">
-      <Filter>SARAH\Editor</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Source\GuiOscTab.h">
-      <Filter>SARAH\Editor</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Source\GuiPitchEgTab.h">
-      <Filter>SARAH\Editor</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Source\GuiTabs.h">
-      <Filter>SARAH\Editor</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\JuceLibraryCode\modules\juce_audio_basics\audio_play_head\juce_AudioPlayHead.h">
       <Filter>Juce Modules\juce_audio_basics\audio_play_head</Filter>
     </ClInclude>
@@ -2514,7 +2469,7 @@
     <ClInclude Include="..\..\JuceLibraryCode\modules\juce_audio_basics\juce_audio_basics.h">
       <Filter>Juce Modules\juce_audio_basics</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\..\VST Development\JUCE\modules\juce_audio_basics\juce_audio_basics.h">
+    <ClInclude Include="C:\JUCE\modules\juce_audio_basics\juce_audio_basics.h">
       <Filter>Juce Modules\juce_audio_basics</Filter>
     </ClInclude>
     <ClInclude Include="..\..\JuceLibraryCode\modules\juce_audio_devices\audio_io\juce_AudioDeviceManager.h">
@@ -2553,7 +2508,7 @@
     <ClInclude Include="..\..\JuceLibraryCode\modules\juce_audio_devices\juce_audio_devices.h">
       <Filter>Juce Modules\juce_audio_devices</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\..\VST Development\JUCE\modules\juce_audio_devices\juce_audio_devices.h">
+    <ClInclude Include="C:\JUCE\modules\juce_audio_devices\juce_audio_devices.h">
       <Filter>Juce Modules\juce_audio_devices</Filter>
     </ClInclude>
     <ClInclude Include="..\..\JuceLibraryCode\modules\juce_audio_formats\codecs\flac\libFLAC\include\private\all.h">
@@ -2850,7 +2805,7 @@
     <ClInclude Include="..\..\JuceLibraryCode\modules\juce_audio_formats\juce_audio_formats.h">
       <Filter>Juce Modules\juce_audio_formats</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\..\VST Development\JUCE\modules\juce_audio_formats\juce_audio_formats.h">
+    <ClInclude Include="C:\JUCE\modules\juce_audio_formats\juce_audio_formats.h">
       <Filter>Juce Modules\juce_audio_formats</Filter>
     </ClInclude>
     <ClInclude Include="..\..\JuceLibraryCode\modules\juce_audio_plugin_client\AU\CoreAudioUtilityClasses\AUBase.h">
@@ -2991,7 +2946,7 @@
     <ClInclude Include="..\..\JuceLibraryCode\modules\juce_audio_plugin_client\juce_audio_plugin_client.h">
       <Filter>Juce Modules\juce_audio_plugin_client</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\..\VST Development\JUCE\modules\juce_audio_plugin_client\juce_audio_plugin_client.h">
+    <ClInclude Include="C:\JUCE\modules\juce_audio_plugin_client\juce_audio_plugin_client.h">
       <Filter>Juce Modules\juce_audio_plugin_client</Filter>
     </ClInclude>
     <ClInclude Include="..\..\JuceLibraryCode\modules\juce_audio_processors\format\juce_AudioPluginFormat.h">
@@ -3081,7 +3036,7 @@
     <ClInclude Include="..\..\JuceLibraryCode\modules\juce_audio_processors\juce_audio_processors.h">
       <Filter>Juce Modules\juce_audio_processors</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\..\VST Development\JUCE\modules\juce_audio_processors\juce_audio_processors.h">
+    <ClInclude Include="C:\JUCE\modules\juce_audio_processors\juce_audio_processors.h">
       <Filter>Juce Modules\juce_audio_processors</Filter>
     </ClInclude>
     <ClInclude Include="..\..\JuceLibraryCode\modules\juce_audio_utils\audio_cd\juce_AudioCDBurner.h">
@@ -3123,7 +3078,7 @@
     <ClInclude Include="..\..\JuceLibraryCode\modules\juce_audio_utils\juce_audio_utils.h">
       <Filter>Juce Modules\juce_audio_utils</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\..\VST Development\JUCE\modules\juce_audio_utils\juce_audio_utils.h">
+    <ClInclude Include="C:\JUCE\modules\juce_audio_utils\juce_audio_utils.h">
       <Filter>Juce Modules\juce_audio_utils</Filter>
     </ClInclude>
     <ClInclude Include="..\..\JuceLibraryCode\modules\juce_core\containers\juce_AbstractFifo.h">
@@ -3519,7 +3474,7 @@
     <ClInclude Include="..\..\JuceLibraryCode\modules\juce_core\juce_core.h">
       <Filter>Juce Modules\juce_core</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\..\VST Development\JUCE\modules\juce_core\juce_core.h">
+    <ClInclude Include="C:\JUCE\modules\juce_core\juce_core.h">
       <Filter>Juce Modules\juce_core</Filter>
     </ClInclude>
     <ClInclude Include="..\..\JuceLibraryCode\modules\juce_cryptography\encryption\juce_BlowFish.h">
@@ -3543,7 +3498,7 @@
     <ClInclude Include="..\..\JuceLibraryCode\modules\juce_cryptography\juce_cryptography.h">
       <Filter>Juce Modules\juce_cryptography</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\..\VST Development\JUCE\modules\juce_cryptography\juce_cryptography.h">
+    <ClInclude Include="C:\JUCE\modules\juce_cryptography\juce_cryptography.h">
       <Filter>Juce Modules\juce_cryptography</Filter>
     </ClInclude>
     <ClInclude Include="..\..\JuceLibraryCode\modules\juce_data_structures\app_properties\juce_ApplicationProperties.h">
@@ -3573,7 +3528,7 @@
     <ClInclude Include="..\..\JuceLibraryCode\modules\juce_data_structures\juce_data_structures.h">
       <Filter>Juce Modules\juce_data_structures</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\..\VST Development\JUCE\modules\juce_data_structures\juce_data_structures.h">
+    <ClInclude Include="C:\JUCE\modules\juce_data_structures\juce_data_structures.h">
       <Filter>Juce Modules\juce_data_structures</Filter>
     </ClInclude>
     <ClInclude Include="..\..\JuceLibraryCode\modules\juce_dsp\containers\juce_AudioBlock.h">
@@ -3663,7 +3618,7 @@
     <ClInclude Include="..\..\JuceLibraryCode\modules\juce_dsp\juce_dsp.h">
       <Filter>Juce Modules\juce_dsp</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\..\VST Development\JUCE\modules\juce_dsp\juce_dsp.h">
+    <ClInclude Include="C:\JUCE\modules\juce_dsp\juce_dsp.h">
       <Filter>Juce Modules\juce_dsp</Filter>
     </ClInclude>
     <ClInclude Include="..\..\JuceLibraryCode\modules\juce_events\broadcasters\juce_ActionBroadcaster.h">
@@ -3738,7 +3693,7 @@
     <ClInclude Include="..\..\JuceLibraryCode\modules\juce_events\juce_events.h">
       <Filter>Juce Modules\juce_events</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\..\VST Development\JUCE\modules\juce_events\juce_events.h">
+    <ClInclude Include="C:\JUCE\modules\juce_events\juce_events.h">
       <Filter>Juce Modules\juce_events</Filter>
     </ClInclude>
     <ClInclude Include="..\..\JuceLibraryCode\modules\juce_graphics\colour\juce_Colour.h">
@@ -3912,7 +3867,7 @@
     <ClInclude Include="..\..\JuceLibraryCode\modules\juce_graphics\juce_graphics.h">
       <Filter>Juce Modules\juce_graphics</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\..\VST Development\JUCE\modules\juce_graphics\juce_graphics.h">
+    <ClInclude Include="C:\JUCE\modules\juce_graphics\juce_graphics.h">
       <Filter>Juce Modules\juce_graphics</Filter>
     </ClInclude>
     <ClInclude Include="..\..\JuceLibraryCode\modules\juce_gui_basics\application\juce_Application.h">
@@ -4320,7 +4275,7 @@
     <ClInclude Include="..\..\JuceLibraryCode\modules\juce_gui_basics\juce_gui_basics.h">
       <Filter>Juce Modules\juce_gui_basics</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\..\VST Development\JUCE\modules\juce_gui_basics\juce_gui_basics.h">
+    <ClInclude Include="C:\JUCE\modules\juce_gui_basics\juce_gui_basics.h">
       <Filter>Juce Modules\juce_gui_basics</Filter>
     </ClInclude>
     <ClInclude Include="..\..\JuceLibraryCode\modules\juce_gui_extra\code_editor\juce_CodeDocument.h">
@@ -4398,7 +4353,7 @@
     <ClInclude Include="..\..\JuceLibraryCode\modules\juce_gui_extra\juce_gui_extra.h">
       <Filter>Juce Modules\juce_gui_extra</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\..\VST Development\JUCE\modules\juce_gui_extra\juce_gui_extra.h">
+    <ClInclude Include="C:\JUCE\modules\juce_gui_extra\juce_gui_extra.h">
       <Filter>Juce Modules\juce_gui_extra</Filter>
     </ClInclude>
     <ClInclude Include="..\..\JuceLibraryCode\modules\juce_opengl\geometry\juce_Draggable3DOrientation.h">
@@ -4467,7 +4422,7 @@
     <ClInclude Include="..\..\JuceLibraryCode\modules\juce_opengl\juce_opengl.h">
       <Filter>Juce Modules\juce_opengl</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\..\VST Development\JUCE\modules\juce_opengl\juce_opengl.h">
+    <ClInclude Include="C:\JUCE\modules\juce_opengl\juce_opengl.h">
       <Filter>Juce Modules\juce_opengl</Filter>
     </ClInclude>
     <ClInclude Include="..\..\JuceLibraryCode\AppConfig.h">

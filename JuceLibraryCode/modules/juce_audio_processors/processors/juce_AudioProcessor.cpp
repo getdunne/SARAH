@@ -24,6 +24,9 @@
   ==============================================================================
 */
 
+namespace juce
+{
+
 static ThreadLocalValue<AudioProcessor::WrapperType> wrapperTypeBeingCreated;
 
 void JUCE_CALLTYPE AudioProcessor::setTypeOfNextNewPlugin (AudioProcessor::WrapperType type)
@@ -623,6 +626,14 @@ int AudioProcessor::getParameterNumSteps (int index)
 int AudioProcessor::getDefaultNumParameterSteps() noexcept
 {
     return 0x7fffffff;
+}
+
+bool AudioProcessor::isParameterDiscrete (int index) const
+{
+    if (auto* p = managedParameters[index])
+        return p->isDiscrete();
+
+    return false;
 }
 
 String AudioProcessor::getParameterLabel (int index) const
@@ -1401,11 +1412,12 @@ void AudioProcessorParameter::endChangeGesture()
     processor->endParameterChangeGesture (parameterIndex);
 }
 
-bool AudioProcessorParameter::isOrientationInverted() const                    { return false; }
-bool AudioProcessorParameter::isAutomatable() const                            { return true; }
-bool AudioProcessorParameter::isMetaParameter() const                          { return false; }
-AudioProcessorParameter::Category AudioProcessorParameter::getCategory() const { return genericParameter; }
-int AudioProcessorParameter::getNumSteps() const            { return AudioProcessor::getDefaultNumParameterSteps(); }
+bool AudioProcessorParameter::isOrientationInverted() const                      { return false; }
+bool AudioProcessorParameter::isAutomatable() const                              { return true; }
+bool AudioProcessorParameter::isMetaParameter() const                            { return false; }
+AudioProcessorParameter::Category AudioProcessorParameter::getCategory() const   { return genericParameter; }
+int AudioProcessorParameter::getNumSteps() const                                 { return AudioProcessor::getDefaultNumParameterSteps(); }
+bool AudioProcessorParameter::isDiscrete() const                                 { return false; }
 
 String AudioProcessorParameter::getText (float value, int /*maximumStringLength*/) const
 {
@@ -1442,3 +1454,5 @@ void AudioPlayHead::CurrentPositionInfo::resetToDefault()
     timeSigDenominator = 4;
     bpm = 120;
 }
+
+} // namespace juce

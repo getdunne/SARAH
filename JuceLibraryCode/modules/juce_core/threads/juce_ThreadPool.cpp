@@ -20,6 +20,9 @@
   ==============================================================================
 */
 
+namespace juce
+{
+
 class ThreadPool::ThreadPoolThread  : public Thread
 {
 public:
@@ -193,7 +196,7 @@ void ThreadPool::moveJobToFront (const ThreadPoolJob* job) noexcept
 {
     const ScopedLock sl (lock);
 
-    if (! ! job->isActive)
+    if (! job->isActive)
     {
         auto index = jobs.indexOf (const_cast<ThreadPoolJob*> (job));
 
@@ -419,3 +422,5 @@ void ThreadPool::addToDeleteList (OwnedArray<ThreadPoolJob>& deletionList, Threa
     if (job->shouldBeDeleted)
         deletionList.add (job);
 }
+
+} // namespace juce

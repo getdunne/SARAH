@@ -24,6 +24,8 @@
   ==============================================================================
 */
 
+namespace juce
+{
 
 Colour LookAndFeel_V4::ColourScheme::getUIColour (UIColour index) const noexcept
 {
@@ -470,10 +472,12 @@ void LookAndFeel_V4::drawProgressBar (Graphics& g, ProgressBar& progressBar,
     if (width == height)
         drawCircularProgressBar (g, progressBar, textToShow);
     else
-        drawLinearProgressBar (g, progressBar, width, height, progress);
+        drawLinearProgressBar (g, progressBar, width, height, progress, textToShow);
 }
 
-void LookAndFeel_V4::drawLinearProgressBar (Graphics& g, ProgressBar& progressBar, int width, int height, double progress)
+void LookAndFeel_V4::drawLinearProgressBar (Graphics& g, ProgressBar& progressBar,
+                                            int width, int height,
+                                            double progress, const String& textToShow)
 {
     const auto background = progressBar.findColour (ProgressBar::backgroundColourId);
     const auto foreground = progressBar.findColour (ProgressBar::foregroundColourId);
@@ -519,6 +523,14 @@ void LookAndFeel_V4::drawLinearProgressBar (Graphics& g, ProgressBar& progressBa
 
         g.setTiledImageFill (im, 0, 0, 0.85f);
         g.fillPath (p);
+    }
+
+    if (textToShow.isNotEmpty())
+    {
+        g.setColour (Colour::contrasting (background, foreground));
+        g.setFont (height * 0.6f);
+
+        g.drawText (textToShow, 0, 0, width, height, Justification::centred, false);
     }
 }
 
@@ -942,8 +954,8 @@ void LookAndFeel_V4::drawLinearSlider (Graphics& g, int x, int y, int width, int
 
         const auto trackWidth = jmin (6.0f, slider.isHorizontal() ? height * 0.25f : width * 0.25f);
 
-        const Point<float> startPoint (slider.isHorizontal() ? x : width * 0.5f,
-                                       slider.isHorizontal() ? height * 0.5f : height + y);
+        const Point<float> startPoint (slider.isHorizontal() ? x : x + width * 0.5f,
+                                       slider.isHorizontal() ? y + height * 0.5f : height + y);
 
         const Point<float> endPoint (slider.isHorizontal() ? width + x : startPoint.x,
                                      slider.isHorizontal() ? startPoint.y : y);
@@ -1429,3 +1441,5 @@ void LookAndFeel_V4::initialiseColours()
     for (int i = 0; i < numElementsInArray (coloursToUse); i += 2)
         setColour ((int) coloursToUse [i], Colour ((uint32) coloursToUse [i + 1]));
 }
+
+} // namespace juce
