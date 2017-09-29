@@ -62,6 +62,12 @@ SARAHAudioProcessorEditor::SARAHAudioProcessorEditor (SARAHAudioProcessor& p)
 
     backgroundImage = ImageCache::getFromMemory(BinaryData::background_png, BinaryData::background_pngSize);
 
+    File fileOnDesktop = File::getSpecialLocation(File::SpecialLocationType::userDesktopDirectory).getChildFile("sarah.png");
+    if (fileOnDesktop.existsAsFile())
+    {
+        backgroundImage = ImageFileFormat::loadFrom(fileOnDesktop);
+    }
+
 #ifdef SHOW_GROUP_BOXES
     addAndMakeVisible(gOsc1);
     addAndMakeVisible(gPeg1);
