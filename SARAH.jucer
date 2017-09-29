@@ -2,7 +2,7 @@
 
 <JUCERPROJECT id="pjItUw" name="SARAH" displaySplashScreen="1" reportAppUsage="1"
               splashScreenColour="Dark" projectType="audioplug" version="1.0.0"
-              bundleIdentifier="com.yourcompany.SARAH" includeBinaryInAppConfig="0"
+              bundleIdentifier="com.yourcompany.SARAH" includeBinaryInAppConfig="1"
               cppLanguageStandard="latest" buildVST="1" buildVST3="0" buildAU="1"
               buildAUv3="0" buildRTAS="0" buildAAX="0" buildStandalone="0"
               enableIAA="0" pluginName="SARAH" pluginDesc="FFT-based Synthesizer"
@@ -11,9 +11,12 @@
               pluginWantsMidiIn="1" pluginProducesMidiOut="0" pluginIsMidiEffectPlugin="0"
               pluginEditorRequiresKeys="0" pluginAUExportPrefix="SarahAU" pluginRTASCategory=""
               aaxIdentifier="com.yourcompany.SARAH" pluginAAXCategory="AAX_ePlugInCategory_Dynamics"
-              jucerVersion="5.1.1" companyName="your company" companyWebsite="www.yourcompany.com"
+              jucerVersion="5.1.2" companyName="your company" companyWebsite="www.yourcompany.com"
               companyEmail="info@yourcompany.com" binaryDataNamespace="">
   <MAINGROUP id="lIYlKh" name="SARAH">
+    <GROUP id="{60F36A42-6911-9BD2-E13B-D6F97561CD19}" name="Resources">
+      <FILE id="oVGnbk" name="background.png" compile="0" resource="1" file="Resources/background.png"/>
+    </GROUP>
     <GROUP id="{FD1652B3-CC47-70AE-6DD4-1247BF670310}" name="Plugin">
       <FILE id="W8uTfY" name="PluginProcessor.cpp" compile="1" resource="0"
             file="Source/PluginProcessor.cpp"/>

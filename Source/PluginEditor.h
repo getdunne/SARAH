@@ -71,6 +71,7 @@ public:
     void sliderValueChanged(Slider*) override;
 
 private:
+    Image backgroundImage;
     SARAHAudioProcessor& processor;
 
     GroupComponent gOsc1, gPeg1, gOsc2, gPeg2, gFlt1, gFeg1, gFlt2, gFeg2, gPlfo, gHlfo, gAeg, gMaster;

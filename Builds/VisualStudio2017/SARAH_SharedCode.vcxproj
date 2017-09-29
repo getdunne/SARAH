@@ -1869,6 +1869,7 @@
     <ClCompile Include="..\..\JuceLibraryCode\modules\juce_opengl\juce_opengl.cpp">
       <ExcludedFromBuild>true</ExcludedFromBuild>
     </ClCompile>
+    <ClCompile Include="..\..\JuceLibraryCode\BinaryData.cpp"/>
     <ClCompile Include="..\..\JuceLibraryCode\include_juce_audio_basics.cpp"/>
     <ClCompile Include="..\..\JuceLibraryCode\include_juce_audio_devices.cpp"/>
     <ClCompile Include="..\..\JuceLibraryCode\include_juce_audio_formats.cpp"/>
@@ -2589,9 +2590,11 @@
     <ClInclude Include="..\..\JuceLibraryCode\modules\juce_opengl\juce_opengl.h"/>
     <ClInclude Include="C:\JUCE\modules\juce_opengl\juce_opengl.h"/>
     <ClInclude Include="..\..\JuceLibraryCode\AppConfig.h"/>
+    <ClInclude Include="..\..\JuceLibraryCode\BinaryData.h"/>
     <ClInclude Include="..\..\JuceLibraryCode\JuceHeader.h"/>
   </ItemGroup>
   <ItemGroup>
+    <None Include="..\..\Resources\background.png"/>
     <None Include="..\..\JuceLibraryCode\modules\juce_audio_formats\codecs\flac\Flac Licence.txt"/>
     <None Include="..\..\JuceLibraryCode\modules\juce_audio_formats\codecs\oggvorbis\Ogg Vorbis Licence.txt"/>
     <None Include="..\..\JuceLibraryCode\modules\juce_graphics\image_formats\jpglib\changes to libjpeg for JUCE.txt"/>

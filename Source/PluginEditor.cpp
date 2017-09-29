@@ -1,6 +1,10 @@
 #include "PluginProcessor.h"
 #include "PluginEditor.h"
 
+//#define SHOW_GROUP_BOXES
+//#define SHOW_LABELS
+#define SHOW_CONTROLS
+
 SARAHAudioProcessorEditor::SARAHAudioProcessorEditor (SARAHAudioProcessor& p)
     : AudioProcessorEditor (&p)
     , processor (p)
@@ -18,44 +22,47 @@ SARAHAudioProcessorEditor::SARAHAudioProcessorEditor (SARAHAudioProcessor& p)
     , gMaster("gMaster", TRANS("Master"))
     , lblOsc1Pitch("lblOsc1Pitch", TRANS("Pitch"))
     , lblOsc1Detune("lblOsc1Detune", TRANS("Detune"))
-    , lblOsc1PitchEgAttack("lblOsc1PitchEgAttack", TRANS("A.sec"))
-    , lblOsc1PitchEgSustain("lblOsc1PitchEgSustain", TRANS("S.semi"))
-    , lblOsc1PitchEgRelease("lblOsc1PitchEgRelease", TRANS("R.sec"))
+    , lblOsc1PitchEgAttack("lblOsc1PitchEgAttack", TRANS("Attack"))
+    , lblOsc1PitchEgSustain("lblOsc1PitchEgSustain", TRANS("Sustain"))
+    , lblOsc1PitchEgRelease("lblOsc1PitchEgRelease", TRANS("Release"))
     , lblOsc2Pitch("lblOsc2Pitch", TRANS("Pitch"))
     , lblOsc2Detune("lblOsc2Detune", TRANS("Detune"))
-    , lblOsc2PitchEgAttack("lblOsc2PitchEgAttack", TRANS("A.sec"))
-    , lblOsc2PitchEgSustain("lblOsc2PitchEgSustain", TRANS("S.semi"))
-    , lblOsc2PitchEgRelease("lblOsc2PitchEgRelease", TRANS("R.sec"))
-    , lblFlt1Cutoff("lblFlt1Cutoff", TRANS("Cutoff%"))
-    , lblFlt1Slope("lblFlt1Slope", TRANS("dB/oct"))
-    , lblFlt1EnvAmt("lblFlt1EnvAmt", TRANS("Env.amt"))
-    , lblFlt1EgAttack("lblFlt1EgAttack", TRANS("A.sec"))
-    , lblFlt1EgDecay("lblFlt1EgDecay", TRANS("D.sec"))
-    , lblFlt1EgSustain("lblFlt1EgSustain", TRANS("S.%"))
-    , lblFlt1EgRelease("lblFlt1EgRelease", TRANS("R.sec"))
-    , lblFlt2Cutoff("lblFlt2Cutoff", TRANS("Cutoff%"))
-    , lblFlt2Slope("lblFlt2Slope", TRANS("dB/oct"))
-    , lblFlt2EnvAmt("lblFlt2EnvAmt", TRANS("Env.amt"))
-    , lblFlt2EgAttack("lblFlt2EgAttack", TRANS("A.sec"))
-    , lblFlt2EgDecay("lblFlt2EgDecay", TRANS("D.sec"))
-    , lblFlt2EgSustain("lblFlt2EgSustain", TRANS("S.%"))
-    , lblFlt2EgRelease("lblFlt2EgRelease", TRANS("R.sec"))
-    , lblPitchLfoFreq("lblPitchLfoFreq", TRANS("Freq.Hz"))
-    , lblPitchLfoAmount("lblPitchLfoAmount", TRANS("Cents"))
-    , lblFilterLfoFreq("lblFilterLfoFreq", TRANS("Freq.Hz"))
-    , lblFilterLfoAmount("lblFilterLfoAmount", TRANS("Amt.%"))
+    , lblOsc2PitchEgAttack("lblOsc2PitchEgAttack", TRANS("Attack"))
+    , lblOsc2PitchEgSustain("lblOsc2PitchEgSustain", TRANS("Sustain"))
+    , lblOsc2PitchEgRelease("lblOsc2PitchEgRelease", TRANS("Release"))
+    , lblFlt1Cutoff("lblFlt1Cutoff", TRANS("Cutoff"))
+    , lblFlt1Slope("lblFlt1Slope", TRANS("Slope"))
+    , lblFlt1EnvAmt("lblFlt1EnvAmt", TRANS("Amount"))
+    , lblFlt1EgAttack("lblFlt1EgAttack", TRANS("Attack"))
+    , lblFlt1EgDecay("lblFlt1EgDecay", TRANS("Decay"))
+    , lblFlt1EgSustain("lblFlt1EgSustain", TRANS("Sustain"))
+    , lblFlt1EgRelease("lblFlt1EgRelease", TRANS("Release"))
+    , lblFlt2Cutoff("lblFlt2Cutoff", TRANS("Cutoff"))
+    , lblFlt2Slope("lblFlt2Slope", TRANS("Slope"))
+    , lblFlt2EnvAmt("lblFlt2EnvAmt", TRANS("Amount"))
+    , lblFlt2EgAttack("lblFlt2EgAttack", TRANS("Attack"))
+    , lblFlt2EgDecay("lblFlt2EgDecay", TRANS("Decay"))
+    , lblFlt2EgSustain("lblFlt2EgSustain", TRANS("Sustain"))
+    , lblFlt2EgRelease("lblFlt2EgRelease", TRANS("Release"))
+    , lblPitchLfoFreq("lblPitchLfoFreq", TRANS("Freq"))
+    , lblPitchLfoAmount("lblPitchLfoAmount", TRANS("Amount"))
+    , lblFilterLfoFreq("lblFilterLfoFreq", TRANS("Freq"))
+    , lblFilterLfoAmount("lblFilterLfoAmount", TRANS("Amount"))
     , lblMasterVol("lblMasterVol", TRANS("Volume"))
     , lblOscBal("lblOscBal", TRANS("Osc.Bal"))
     , lblPitchBendUp("lblPitchBendUp", TRANS("PB.Up"))
     , lblPitchBendDown("lblPitchBendDown", TRANS("PB.Dn"))
-    , lblAmpEgAttack("lblAmpEgAttack", TRANS("A.sec"))
-    , lblAmpEgDecay("lblAmpEgDecay", TRANS("D.sec"))
-    , lblAmpEgSustain("lblAmpEgSustain", TRANS("S.%"))
-    , lblAmpEgRelease ("lblAmpEgRelease", TRANS("R.sec"))
+    , lblAmpEgAttack("lblAmpEgAttack", TRANS("Attack"))
+    , lblAmpEgDecay("lblAmpEgDecay", TRANS("Decay"))
+    , lblAmpEgSustain("lblAmpEgSustain", TRANS("Sustain"))
+    , lblAmpEgRelease ("lblAmpEgRelease", TRANS("Release"))
 {
     setSize (870, 450);
     p.addChangeListener(this);
 
+    backgroundImage = ImageCache::getFromMemory(BinaryData::background_png, BinaryData::background_pngSize);
+
+#ifdef SHOW_GROUP_BOXES
     addAndMakeVisible(gOsc1);
     addAndMakeVisible(gPeg1);
     addAndMakeVisible(gOsc2);
@@ -68,29 +75,13 @@ SARAHAudioProcessorEditor::SARAHAudioProcessorEditor (SARAHAudioProcessor& p)
     addAndMakeVisible(gHlfo);
     addAndMakeVisible(gAeg);
     addAndMakeVisible(gMaster);
-
-    auto initCombo = [this](WaveformComboBox& combo)
-    {
-        addAndMakeVisible(combo);
-        combo.setEditableText(false);
-        combo.setJustificationType(Justification::centredLeft);
-        combo.setTextWhenNothingSelected("");
-        combo.setTextWhenNoChoicesAvailable(TRANS("(no choices)"));
-        combo.addItem(TRANS("Sine"), 1);
-        combo.addItem(TRANS("Triangle"), 2);
-        combo.addItem(TRANS("Square"), 3);
-        combo.addItem(TRANS("Sawtooth"), 4);
-        combo.addListener(this);
-    };
-
-    initCombo(cbOsc1);
-    initCombo(cbOsc2);
-    initCombo(cbPlfo);
-    initCombo(cbHlfo);
+#endif
 
     auto initLabel = [this](Label& label)
     {
+#ifdef SHOW_LABELS
         addAndMakeVisible(label);
+#endif
         label.setJustificationType(Justification::horizontallyCentred);
         label.setEditable(false, false, false);
     };
@@ -132,11 +123,35 @@ SARAHAudioProcessorEditor::SARAHAudioProcessorEditor (SARAHAudioProcessor& p)
     initLabel(lblAmpEgSustain);
     initLabel(lblAmpEgRelease);
 
+    auto initCombo = [this](WaveformComboBox& combo)
+    {
+#ifdef SHOW_CONTROLS
+        addAndMakeVisible(combo);
+#endif
+        combo.setEditableText(false);
+        combo.setJustificationType(Justification::centredLeft);
+        combo.setTextWhenNothingSelected("");
+        combo.setTextWhenNoChoicesAvailable(TRANS("(no choices)"));
+        combo.addItem(TRANS("Sine"), 1);
+        combo.addItem(TRANS("Triangle"), 2);
+        combo.addItem(TRANS("Square"), 3);
+        combo.addItem(TRANS("Sawtooth"), 4);
+        combo.addListener(this);
+    };
+
+    initCombo(cbOsc1);
+    initCombo(cbOsc2);
+    initCombo(cbPlfo);
+    initCombo(cbHlfo);
+
     auto initSlider = [this](Slider& slider)
     {
+#ifdef SHOW_CONTROLS
         addAndMakeVisible(slider);
+#endif
         slider.setSliderStyle(Slider::Rotary);
         slider.setTextBoxStyle(Slider::NoTextBox, false, 0, 0);
+        slider.setPopupDisplayEnabled(true, true, this);
         slider.addListener(this);
     };
 
@@ -187,7 +202,9 @@ SARAHAudioProcessorEditor::~SARAHAudioProcessorEditor()
 
 void SARAHAudioProcessorEditor::paint (Graphics& g)
 {
-    g.fillAll(Colour(0xff323e44));
+    //g.fillAll(Colour(0xff323e44));
+    //g.fillAll(Colour(0xff000000));
+    g.drawImageAt(backgroundImage, 0, 0);
 }
 
 void SARAHAudioProcessorEditor::resized()
@@ -204,18 +221,18 @@ void SARAHAudioProcessorEditor::resized()
 
     const int topOffset1 = 12;
     const int largeGroupHeight = 180;
-    const int smallGroupHeight = 80;
+    const int smallGroupHeight = 85;
     const int middleGap = 60;
     const int topOffset2 = topOffset1 + largeGroupHeight + middleGap;
     const int egTopOffset = 80;
     const int egHeight = 84;
-    const int groupVerticalGap = 20;
+    const int groupVerticalGap = 10;
     const int cbTopOffset = 30;
     const int cbHeight = 24;
     const int slTopOffset = 12;
     const int slSize = 56;
     const int lblTopOffset = 62;
-    const int lblHeight = 10;
+    const int lblHeight = 15;
 
     int left, top, slLeftCtr;
 
@@ -227,17 +244,17 @@ void SARAHAudioProcessorEditor::resized()
     slLeftCtr = left + egLeftOffset + cboxWidth + slLeftOffset;
     slOsc1Pitch.setBounds(slLeftCtr - slSize / 2, top + slTopOffset, slSize, slSize);
     lblOsc1Pitch.setBounds(slLeftCtr - lblWidth / 2, top + lblTopOffset, lblWidth, lblHeight);
-    slLeftCtr += slLeftAdvance;
+    slLeftCtr = left + egLeftOffset + slLeftOffset + 3.1 * slLeftAdvance;
     slOsc1Detune.setBounds(slLeftCtr - slSize / 2, top + slTopOffset, slSize, slSize);
     lblOsc1Detune.setBounds(slLeftCtr - lblWidth / 2, top + lblTopOffset, lblWidth, lblHeight);
     gPeg1.setBounds(left + egLeftOffset, top + egTopOffset, egWidth, egHeight);
     slLeftCtr = left + egLeftOffset + slLeftOffset;
     slOsc1PitchEgAttack.setBounds(slLeftCtr - slSize / 2, top + egTopOffset + slTopOffset, slSize, slSize);
     lblOsc1PitchEgAttack.setBounds(slLeftCtr - lblWidth / 2, top + egTopOffset + lblTopOffset, lblWidth, lblHeight);
-    slLeftCtr += 2 * slLeftAdvance;
+    slLeftCtr += 1.5 * slLeftAdvance;
     slOsc1PitchEgSustain.setBounds(slLeftCtr - slSize / 2, top + egTopOffset + slTopOffset, slSize, slSize);
     lblOsc1PitchEgSustain.setBounds(slLeftCtr - lblWidth / 2, top + egTopOffset + lblTopOffset, lblWidth, lblHeight);
-    slLeftCtr += slLeftAdvance;
+    slLeftCtr += 1.5 * slLeftAdvance;
     slOsc1PitchEgRelease.setBounds(slLeftCtr - slSize / 2, top + egTopOffset + slTopOffset, slSize, slSize);
     lblOsc1PitchEgRelease.setBounds(slLeftCtr - lblWidth / 2, top + egTopOffset + lblTopOffset, lblWidth, lblHeight);
 
@@ -248,17 +265,17 @@ void SARAHAudioProcessorEditor::resized()
     slLeftCtr = left + egLeftOffset + cboxWidth + slLeftOffset;
     slOsc2Pitch.setBounds(slLeftCtr - slSize / 2, top + slTopOffset, slSize, slSize);
     lblOsc2Pitch.setBounds(slLeftCtr - lblWidth / 2, top + lblTopOffset, lblWidth, lblHeight);
-    slLeftCtr += slLeftAdvance;
+    slLeftCtr = left + egLeftOffset + slLeftOffset + 3.1 * slLeftAdvance;
     slOsc2Detune.setBounds(slLeftCtr - slSize / 2, top + slTopOffset, slSize, slSize);
     lblOsc2Detune.setBounds(slLeftCtr - lblWidth / 2, top + lblTopOffset, lblWidth, lblHeight);
     gPeg2.setBounds(left + egLeftOffset, top + egTopOffset, egWidth, egHeight);
     slLeftCtr = left + egLeftOffset + slLeftOffset;
     slOsc2PitchEgAttack.setBounds(slLeftCtr - slSize / 2, top + egTopOffset + slTopOffset, slSize, slSize);
     lblOsc2PitchEgAttack.setBounds(slLeftCtr - lblWidth / 2, top + egTopOffset + lblTopOffset, lblWidth, lblHeight);
-    slLeftCtr += 2 * slLeftAdvance;
+    slLeftCtr += 1.5 * slLeftAdvance;
     slOsc2PitchEgSustain.setBounds(slLeftCtr - slSize / 2, top + egTopOffset + slTopOffset, slSize, slSize);
     lblOsc2PitchEgSustain.setBounds(slLeftCtr - lblWidth / 2, top + egTopOffset + lblTopOffset, lblWidth, lblHeight);
-    slLeftCtr += slLeftAdvance;
+    slLeftCtr += 1.5 * slLeftAdvance;
     slOsc2PitchEgRelease.setBounds(slLeftCtr - slSize / 2, top + egTopOffset + slTopOffset, slSize, slSize);
     lblOsc2PitchEgRelease.setBounds(slLeftCtr - lblWidth / 2, top + egTopOffset + lblTopOffset, lblWidth, lblHeight);
 
@@ -323,7 +340,7 @@ void SARAHAudioProcessorEditor::resized()
     slLeftCtr = left + egLeftOffset + cboxWidth + slLeftOffset;
     slPitchLfoFreq.setBounds(slLeftCtr - slSize / 2, top + slTopOffset, slSize, slSize);
     lblPitchLfoFreq.setBounds(slLeftCtr - lblWidth / 2, top + lblTopOffset, lblWidth, lblHeight);
-    slLeftCtr += slLeftAdvance;
+    slLeftCtr = left + egLeftOffset + slLeftOffset + 3.1 * slLeftAdvance;
     slPitchLfoAmount.setBounds(slLeftCtr - slSize / 2, top + slTopOffset, slSize, slSize);
     lblPitchLfoAmount.setBounds(slLeftCtr - lblWidth / 2, top + lblTopOffset, lblWidth, lblHeight);
 
@@ -334,7 +351,7 @@ void SARAHAudioProcessorEditor::resized()
     slLeftCtr = left + egLeftOffset + cboxWidth + slLeftOffset;
     slFilterLfoFreq.setBounds(slLeftCtr - slSize / 2, top + slTopOffset, slSize, slSize);
     lblFilterLfoFreq.setBounds(slLeftCtr - lblWidth / 2, top + lblTopOffset, lblWidth, lblHeight);
-    slLeftCtr += slLeftAdvance;
+    slLeftCtr = left + egLeftOffset + slLeftOffset + 3.1 * slLeftAdvance;
     slFilterLfoAmount.setBounds(slLeftCtr - slSize / 2, top + slTopOffset, slSize, slSize);
     lblFilterLfoAmount.setBounds(slLeftCtr - lblWidth / 2, top + lblTopOffset, lblWidth, lblHeight);
 
