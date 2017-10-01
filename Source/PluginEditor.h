@@ -52,6 +52,14 @@ public:
     void notify() { if (pWaveform) pWaveform->toComboBox(*this); }
 };
 
+class MyLookAndFeel : public LookAndFeel_V4
+{
+public:
+    void drawRotarySlider(Graphics& g, int x, int y, int width, int height, float sliderPos,
+        const float rotaryStartAngle, const float rotaryEndAngle,
+        Slider& slider) override;
+};
+
 
 class SARAHAudioProcessorEditor
     : public AudioProcessorEditor
@@ -72,6 +80,7 @@ public:
 
 private:
     Image backgroundImage;
+    MyLookAndFeel myLookAndFeel;
     SARAHAudioProcessor& processor;
 
     GroupComponent gOsc1, gPeg1, gOsc2, gPeg2, gFlt1, gFeg1, gFlt2, gFeg2, gPlfo, gHlfo, gAeg, gMaster;

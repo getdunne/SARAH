@@ -1,6 +1,38 @@
 #include "PluginProcessor.h"
 #include "PluginEditor.h"
 
+// Change the look of our "rotary sliders" so they're more like traditional knobs. This code is adapted
+// from the example at https://www.juce.com/doc/tutorial_look_and_feel_customisation.
+void MyLookAndFeel::drawRotarySlider(Graphics& g, int x, int y, int width, int height, float sliderPos,
+    const float rotaryStartAngle, const float rotaryEndAngle,
+    Slider& slider)
+{
+    const float radius = jmin(width / 2, height / 2) - 10.0f;
+    const float centreX = x + width * 0.5f;
+    const float centreY = y + height * 0.5f;
+    const float rx = centreX - radius;
+    const float ry = centreY - radius;
+    const float rw = radius * 2.0f;
+    const float angle = rotaryStartAngle + sliderPos * (rotaryEndAngle - rotaryStartAngle);
+
+    // fill
+    g.setColour(Colours::steelblue);
+    g.fillEllipse(rx, ry, rw, rw);
+    // outline
+    g.setColour(Colours::slategrey);
+    g.drawEllipse(rx, ry, rw, rw, 1.0f);
+
+    Path p;
+    const float pointerLength = radius * 0.5f;
+    const float pointerThickness = 2.0f;
+    p.addRectangle(-pointerThickness * 0.5f, -radius, pointerThickness, pointerLength);
+    p.applyTransform(AffineTransform::rotation(angle).translated(centreX, centreY));
+
+    // pointer
+    g.setColour(Colours::lightblue);
+    g.fillPath(p);
+}
+
 //#define SHOW_GROUP_BOXES
 //#define SHOW_LABELS
 #define SHOW_CONTROLS
@@ -60,6 +92,7 @@ SARAHAudioProcessorEditor::SARAHAudioProcessorEditor (SARAHAudioProcessor& p)
     setSize (870, 450);
     p.addChangeListener(this);
 
+    setLookAndFeel(&myLookAndFeel);
     backgroundImage = ImageCache::getFromMemory(BinaryData::background_png, BinaryData::background_pngSize);
 
     File fileOnDesktop = File::getSpecialLocation(File::SpecialLocationType::userDesktopDirectory).getChildFile("sarah.png");
