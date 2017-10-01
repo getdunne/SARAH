@@ -79,9 +79,18 @@ public:
     void sliderValueChanged(Slider*) override;
 
 private:
+    // some empirical constants used in layout
+    static const int windowWidth = 870;
+    static const int windowHeight = 450;
+
+    void PaintSarahLogo(Graphics& g);
+
     Image backgroundImage;
     MyLookAndFeel myLookAndFeel;
     SARAHAudioProcessor& processor;
+
+    Colour backgroundColour;
+    bool useBackgroundImage, showGroupBoxes, showLabels, showLogo, showControls;
 
     GroupComponent gOsc1, gPeg1, gOsc2, gPeg2, gFlt1, gFeg1, gFlt2, gFeg2, gPlfo, gHlfo, gAeg, gMaster;
     WaveformComboBox cbOsc1, cbOsc2, cbPlfo, cbHlfo;

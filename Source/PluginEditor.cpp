@@ -33,13 +33,15 @@ void MyLookAndFeel::drawRotarySlider(Graphics& g, int x, int y, int width, int h
     g.fillPath(p);
 }
 
-//#define SHOW_GROUP_BOXES
-//#define SHOW_LABELS
-#define SHOW_CONTROLS
-
 SARAHAudioProcessorEditor::SARAHAudioProcessorEditor (SARAHAudioProcessor& p)
     : AudioProcessorEditor (&p)
     , processor (p)
+    , backgroundColour(0xff323e44)  // default JUCE background colour
+    , useBackgroundImage(false)
+    , showGroupBoxes(true)
+    , showLabels(true)
+    , showLogo(true)
+    , showControls(true)
     , gOsc1("gOsc1", TRANS("Oscillator 1"))
     , gPeg1("gPeg1", TRANS("Pitch EG"))
     , gOsc2("gOsc2", TRANS("Oscillator 2"))
@@ -89,38 +91,52 @@ SARAHAudioProcessorEditor::SARAHAudioProcessorEditor (SARAHAudioProcessor& p)
     , lblAmpEgSustain("lblAmpEgSustain", TRANS("Sustain"))
     , lblAmpEgRelease ("lblAmpEgRelease", TRANS("Release"))
 {
-    setSize (870, 450);
+    setSize (windowWidth, windowHeight);
     p.addChangeListener(this);
 
     setLookAndFeel(&myLookAndFeel);
-    backgroundImage = ImageCache::getFromMemory(BinaryData::background_png, BinaryData::background_pngSize);
 
+    // If you intend to take screenshots as basis for developing custom backgrounds,
+    // modify the defaults for backgroundColour, useBackgroundImage, showGroupBoxes,
+    // showLabels, showLogo, showControls here, e.g.
+    //backgroundColour = Colour(0xff000000);  // opaque black
+
+    backgroundImage = ImageCache::getFromMemory(BinaryData::background_png, BinaryData::background_pngSize);
     File fileOnDesktop = File::getSpecialLocation(File::SpecialLocationType::userDesktopDirectory).getChildFile("sarah.png");
     if (fileOnDesktop.existsAsFile())
     {
+        // if user has provided a background image, we always use it
         backgroundImage = ImageFileFormat::loadFrom(fileOnDesktop);
+        useBackgroundImage = true;
     }
 
-#ifdef SHOW_GROUP_BOXES
-    addAndMakeVisible(gOsc1);
-    addAndMakeVisible(gPeg1);
-    addAndMakeVisible(gOsc2);
-    addAndMakeVisible(gPeg2);
-    addAndMakeVisible(gFlt1);
-    addAndMakeVisible(gFeg1);
-    addAndMakeVisible(gFlt2);
-    addAndMakeVisible(gFeg2);
-    addAndMakeVisible(gPlfo);
-    addAndMakeVisible(gHlfo);
-    addAndMakeVisible(gAeg);
-    addAndMakeVisible(gMaster);
-#endif
+    if (useBackgroundImage)
+    {
+        // display only controls, assuming all static material is in the background image
+        showGroupBoxes = false;
+        showLabels = false;
+        showLogo = false;
+    }
+
+    if (showGroupBoxes)
+    {
+        addAndMakeVisible(gOsc1);
+        addAndMakeVisible(gPeg1);
+        addAndMakeVisible(gOsc2);
+        addAndMakeVisible(gPeg2);
+        addAndMakeVisible(gFlt1);
+        addAndMakeVisible(gFeg1);
+        addAndMakeVisible(gFlt2);
+        addAndMakeVisible(gFeg2);
+        addAndMakeVisible(gPlfo);
+        addAndMakeVisible(gHlfo);
+        addAndMakeVisible(gAeg);
+        addAndMakeVisible(gMaster);
+    }
 
     auto initLabel = [this](Label& label)
     {
-#ifdef SHOW_LABELS
-        addAndMakeVisible(label);
-#endif
+        if (showLabels) addAndMakeVisible(label);
         label.setJustificationType(Justification::horizontallyCentred);
         label.setEditable(false, false, false);
     };
@@ -164,9 +180,7 @@ SARAHAudioProcessorEditor::SARAHAudioProcessorEditor (SARAHAudioProcessor& p)
 
     auto initCombo = [this](WaveformComboBox& combo)
     {
-#ifdef SHOW_CONTROLS
-        addAndMakeVisible(combo);
-#endif
+        if (showControls) addAndMakeVisible(combo);
         combo.setEditableText(false);
         combo.setJustificationType(Justification::centredLeft);
         combo.setTextWhenNothingSelected("");
@@ -185,9 +199,7 @@ SARAHAudioProcessorEditor::SARAHAudioProcessorEditor (SARAHAudioProcessor& p)
 
     auto initSlider = [this](Slider& slider)
     {
-#ifdef SHOW_CONTROLS
-        addAndMakeVisible(slider);
-#endif
+        if (showControls) addAndMakeVisible(slider);
         slider.setSliderStyle(Slider::Rotary);
         slider.setTextBoxStyle(Slider::NoTextBox, false, 0, 0);
         slider.setPopupDisplayEnabled(true, true, this);
@@ -239,11 +251,82 @@ SARAHAudioProcessorEditor::~SARAHAudioProcessorEditor()
     processor.removeChangeListener(this);
 }
 
-void SARAHAudioProcessorEditor::paint (Graphics& g)
+void SARAHAudioProcessorEditor::PaintSarahLogo(Graphics& g)
 {
-    //g.fillAll(Colour(0xff323e44));
-    //g.fillAll(Colour(0xff000000));
-    g.drawImageAt(backgroundImage, 0, 0);
+    // basic letter structure
+    static int width = 7;
+    static int spacing = 2;
+    static int halfHeight = 3;
+    static int r_indent = 2;
+
+    // see resized() below
+    const int topOffset1 = 12;
+    const int largeGroupHeight = 180;
+    const int middleGap = 60;
+
+    // vertical layout
+    const int logoTopOffset = 16;
+    const int logoHeight = 32;
+    const int logoTop = topOffset1 + largeGroupHeight + logoTopOffset;
+    const int logoMid = logoTop + logoHeight / 2;
+    const int logoBottom = logoTop + logoHeight;
+
+    // horizontal layout
+    static float widthScale = 10.0f;
+    static float letterWidth = widthScale * width;
+    static float rWidth = widthScale * (width - r_indent);
+    static float letterAdvance = widthScale * (width + spacing);
+    static float wordWidth = widthScale * (5 * width + 4 * spacing);
+    static float logoLeft = windowWidth / 2 - 0.5f * wordWidth;
+
+    static float lineThickness = 5.0f;
+    g.setColour(Colours::steelblue);
+
+    // Letter S
+    float left = logoLeft;
+    g.drawLine(left, logoTop, left + letterWidth, logoTop, lineThickness);
+    g.drawLine(left, logoTop, left, logoMid, lineThickness);
+    g.drawLine(left, logoMid, left + letterWidth, logoMid, lineThickness);
+    g.drawLine(left + letterWidth, logoMid, left + letterWidth, logoBottom, lineThickness);
+    g.drawLine(left, logoBottom, left + letterWidth, logoBottom, lineThickness);
+
+    // Letter A
+    left += letterAdvance;
+    g.drawLine(left, logoTop, left + letterWidth, logoTop, lineThickness);
+    g.drawLine(left, logoTop, left, logoBottom, lineThickness);
+    g.drawLine(left + letterWidth, logoTop, left + letterWidth, logoBottom, lineThickness);
+    g.drawLine(left, logoMid, left + letterWidth, logoMid, lineThickness);
+
+    // Letter R
+    left += letterAdvance;
+    g.drawLine(left, logoTop, left + letterWidth, logoTop, lineThickness);
+    g.drawLine(left, logoTop, left, logoBottom, lineThickness);
+    g.drawLine(left + letterWidth, logoTop, left + letterWidth, logoMid, lineThickness);
+    g.drawLine(left, logoMid, left + letterWidth, logoMid, lineThickness);
+    g.drawLine(left + rWidth, logoMid, left + letterWidth, logoBottom, lineThickness);
+
+    // Letter A
+    left += letterAdvance;
+    g.drawLine(left, logoTop, left + letterWidth, logoTop, lineThickness);
+    g.drawLine(left, logoTop, left, logoBottom, lineThickness);
+    g.drawLine(left + letterWidth, logoTop, left + letterWidth, logoBottom, lineThickness);
+    g.drawLine(left, logoMid, left + letterWidth, logoMid, lineThickness);
+
+    // Letter H
+    left += letterAdvance;
+    g.drawLine(left, logoTop, left, logoBottom, lineThickness);
+    g.drawLine(left + letterWidth, logoTop, left + letterWidth, logoBottom, lineThickness);
+    g.drawLine(left, logoMid, left + letterWidth, logoMid, lineThickness);
+}
+
+void SARAHAudioProcessorEditor::paint(Graphics& g)
+{
+    if (useBackgroundImage)
+        g.drawImageAt(backgroundImage, 0, 0);
+    else
+        g.fillAll(backgroundColour);
+
+    if (showLogo) PaintSarahLogo(g);
 }
 
 void SARAHAudioProcessorEditor::resized()
