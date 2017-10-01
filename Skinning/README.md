@@ -6,6 +6,8 @@ As of 29 September, 2017, SARAH uses a single-view GUI instead of the original m
 
 The present version of SARAH uses a PNG image as the background for the single GUI page. The default background image (aka "skin") is the file *Resources/background.png*, which gets compiled into the plugin using the JUCE *BinaryData* mechanism. Each time the plugin is instantiated, it loads this default skin image first, then looks in the user's *Desktop* folder for a file *sarah.png*. If it finds one, it loads that image instead.
 
+**Update Oct 1, 2017** Although the code still contains support for a default background image, it will only be used if you change the default value of *useBackgroundImage* to *true* in *PluginEditor.cpp*. By default, the program creates a pure vector-graphics GUI, which should work on any computer (and based on what I have read, I **think** it should scale automatically on Retina-screen Macs, but I don't have one to verify this).
+
 This folder contains some resources for creating SARAH skin images using [Paint.NET](https://www.getpaint.net/), a free image-editing program which supports multiple *layers*.
 
 **SarahSkin.pdn** is the basic Paint.NET file. To create the default skin:
