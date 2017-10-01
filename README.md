@@ -7,14 +7,10 @@
 
 ![](screenshot.png)
 
-
 ## Implementation notes ##
 This code has been compiled successfully using [Microsoft Visual Studio 2017, Community Edition](https://www.visualstudio.com/community) and [Apple Xcode](https://developer.apple.com/xcode/) v8.2.1. I have tested the VST2.x build under Windows 10 64-bit using the 64-bit version of Hermann Seib's [VSTHost](http://www.hermannseib.com/english/vsthost.htm), and the Mac AUv2 build under [Apple Logic Pro X](https://www.apple.com/ca/logic-pro/what-is/) v10.3.2. I have not tested the Mac VST2.x build. I have not attempted to create a Linux VST build.
 
 I welcome feedback on the [JUCE Forum](https://forum.juce.com/), where you can find me as user **getdunne**.
-
-## Skinning ##
-The latest version of SARAH allows use of a user-supplied background image or "skin" file. See [here](Skinning/README.md).
 
 ## Detailed documentation ##
 
