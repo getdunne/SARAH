@@ -65,14 +65,14 @@ SARAHAudioProcessorEditor::SARAHAudioProcessorEditor (SARAHAudioProcessor& p)
     , lblOsc2PitchEgSustain("lblOsc2PitchEgSustain", TRANS("Sustain"))
     , lblOsc2PitchEgRelease("lblOsc2PitchEgRelease", TRANS("Release"))
     , lblFlt1Cutoff("lblFlt1Cutoff", TRANS("Cutoff"))
-    , lblFlt1Slope("lblFlt1Slope", TRANS("Slope"))
+    , lblFlt1Q("lblFlt1Q", TRANS("Resonance"))
     , lblFlt1EnvAmt("lblFlt1EnvAmt", TRANS("Amount"))
     , lblFlt1EgAttack("lblFlt1EgAttack", TRANS("Attack"))
     , lblFlt1EgDecay("lblFlt1EgDecay", TRANS("Decay"))
     , lblFlt1EgSustain("lblFlt1EgSustain", TRANS("Sustain"))
     , lblFlt1EgRelease("lblFlt1EgRelease", TRANS("Release"))
     , lblFlt2Cutoff("lblFlt2Cutoff", TRANS("Cutoff"))
-    , lblFlt2Slope("lblFlt2Slope", TRANS("Slope"))
+    , lblFlt2Q("lblFltQ", TRANS("Resonance"))
     , lblFlt2EnvAmt("lblFlt2EnvAmt", TRANS("Amount"))
     , lblFlt2EgAttack("lblFlt2EgAttack", TRANS("Attack"))
     , lblFlt2EgDecay("lblFlt2EgDecay", TRANS("Decay"))
@@ -152,14 +152,14 @@ SARAHAudioProcessorEditor::SARAHAudioProcessorEditor (SARAHAudioProcessor& p)
     initLabel(lblOsc2PitchEgSustain);
     initLabel(lblOsc2PitchEgRelease);
     initLabel(lblFlt1Cutoff);
-    initLabel(lblFlt1Slope);
+    initLabel(lblFlt1Q);
     initLabel(lblFlt1EnvAmt);
     initLabel(lblFlt1EgAttack);
     initLabel(lblFlt1EgDecay);
     initLabel(lblFlt1EgSustain);
     initLabel(lblFlt1EgRelease);
     initLabel(lblFlt2Cutoff);
-    initLabel(lblFlt2Slope);
+    initLabel(lblFlt2Q);
     initLabel(lblFlt2EnvAmt);
     initLabel(lblFlt2EgAttack);
     initLabel(lblFlt2EgDecay);
@@ -217,14 +217,14 @@ SARAHAudioProcessorEditor::SARAHAudioProcessorEditor (SARAHAudioProcessor& p)
     initSlider(slOsc2PitchEgSustain); slOsc2PitchEgSustain.setRange(-12, 12, 0);
     initSlider(slOsc2PitchEgRelease); slOsc2PitchEgRelease.setRange(0, 10, 0);
     initSlider(slFlt1Cutoff); slFlt1Cutoff.setRange(0, 100, 0); slFlt1Cutoff.setScale(100);
-    initSlider(slFlt1Slope); slFlt1Slope.setRange(6, 48, 6);
+    initSlider(slFlt1Q); slFlt1Q.setRange(0.1, 15, 0);
     initSlider(slFlt1EnvAmt); slFlt1EnvAmt.setRange(0, 100, 0); slFlt1EnvAmt.setScale(100);
     initSlider(slFlt1EgAttack); slFlt1EgAttack.setRange(0, 10, 0);
     initSlider(slFlt1EgDecay); slFlt1EgDecay.setRange(0, 10, 0);
     initSlider(slFlt1EgSustain); slFlt1EgSustain.setRange(0, 100, 0); slFlt1EgSustain.setScale(100);
     initSlider(slFlt1EgRelease); slFlt1EgRelease.setRange(0, 10, 0);
     initSlider(slFlt2Cutoff); slFlt2Cutoff.setRange(0, 100, 0); slFlt2Cutoff.setScale(100);
-    initSlider(slFlt2Slope); slFlt2Slope.setRange(6, 48, 6);
+    initSlider(slFlt2Q); slFlt2Q.setRange(0.1, 15, 0);
     initSlider(slFlt2EnvAmt); slFlt2EnvAmt.setRange(0, 100, 0); slFlt2EnvAmt.setScale(100);
     initSlider(slFlt2EgAttack); slFlt2EgAttack.setRange(0, 10, 0);
     initSlider(slFlt2EgDecay); slFlt2EgDecay.setRange(0, 10, 0);
@@ -409,8 +409,8 @@ void SARAHAudioProcessorEditor::resized()
     slFlt1Cutoff.setBounds(slLeftCtr - slSize / 2, top + slTopOffset, slSize, slSize);
     lblFlt1Cutoff.setBounds(slLeftCtr - lblWidth / 2, top + lblTopOffset, lblWidth, lblHeight);
     slLeftCtr += 1.5 * slLeftAdvance;
-    slFlt1Slope.setBounds(slLeftCtr - slSize / 2, top + slTopOffset, slSize, slSize);
-    lblFlt1Slope.setBounds(slLeftCtr - lblWidth / 2, top + lblTopOffset, lblWidth, lblHeight);
+    slFlt1Q.setBounds(slLeftCtr - slSize / 2, top + slTopOffset, slSize, slSize);
+    lblFlt1Q.setBounds(slLeftCtr - lblWidth / 2, top + lblTopOffset, lblWidth, lblHeight);
     slLeftCtr += 1.5 * slLeftAdvance;
     slFlt1EnvAmt.setBounds(slLeftCtr - slSize / 2, top + slTopOffset, slSize, slSize);
     lblFlt1EnvAmt.setBounds(slLeftCtr - lblWidth / 2, top + lblTopOffset, lblWidth, lblHeight);
@@ -435,8 +435,8 @@ void SARAHAudioProcessorEditor::resized()
     slFlt2Cutoff.setBounds(slLeftCtr - slSize / 2, top + slTopOffset, slSize, slSize);
     lblFlt2Cutoff.setBounds(slLeftCtr - lblWidth / 2, top + lblTopOffset, lblWidth, lblHeight);
     slLeftCtr += 1.5 * slLeftAdvance;
-    slFlt2Slope.setBounds(slLeftCtr - slSize / 2, top + slTopOffset, slSize, slSize);
-    lblFlt2Slope.setBounds(slLeftCtr - lblWidth / 2, top + lblTopOffset, lblWidth, lblHeight);
+    slFlt2Q.setBounds(slLeftCtr - slSize / 2, top + slTopOffset, slSize, slSize);
+    lblFlt2Q.setBounds(slLeftCtr - lblWidth / 2, top + lblTopOffset, lblWidth, lblHeight);
     slLeftCtr += 1.5 * slLeftAdvance;
     slFlt2EnvAmt.setBounds(slLeftCtr - slSize / 2, top + slTopOffset, slSize, slSize);
     lblFlt2EnvAmt.setBounds(slLeftCtr - lblWidth / 2, top + lblTopOffset, lblWidth, lblHeight);
@@ -532,7 +532,7 @@ void SARAHAudioProcessorEditor::changeListenerCallback(ChangeBroadcaster*)
     slOsc2PitchEgRelease.setPointer(&pParams->pitch2EG.releaseTimeSeconds);
 
     slFlt1Cutoff.setPointer(&pParams->filter1.cutoff);
-    slFlt1Slope.setPointer(&pParams->filter1.dBperOctave);
+    slFlt1Q.setPointer(&pParams->filter1.Q);
     slFlt1EnvAmt.setPointer(&pParams->filter1.envAmount);
     slFlt1EgAttack.setPointer(&pParams->filter1EG.attackTimeSeconds);
     slFlt1EgDecay.setPointer(&pParams->filter1EG.decayTimeSeconds);
@@ -540,7 +540,7 @@ void SARAHAudioProcessorEditor::changeListenerCallback(ChangeBroadcaster*)
     slFlt1EgRelease.setPointer(&pParams->filter1EG.releaseTimeSeconds);
 
     slFlt2Cutoff.setPointer(&pParams->filter2.cutoff);
-    slFlt2Slope.setPointer(&pParams->filter2.dBperOctave);
+    slFlt2Q.setPointer(&pParams->filter2.Q);
     slFlt2EnvAmt.setPointer(&pParams->filter2.envAmount);
     slFlt2EgAttack.setPointer(&pParams->filter2EG.attackTimeSeconds);
     slFlt2EgDecay.setPointer(&pParams->filter2EG.decayTimeSeconds);

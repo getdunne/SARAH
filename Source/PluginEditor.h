@@ -99,13 +99,13 @@ private:
     IntParamSlider slOsc1Pitch, slOsc2Pitch;
     FloatParamSlider slOsc1Detune, slOsc1PitchEgAttack, slOsc1PitchEgSustain, slOsc1PitchEgRelease;
     FloatParamSlider slOsc2Detune, slOsc2PitchEgAttack, slOsc2PitchEgSustain, slOsc2PitchEgRelease;
-    Label lblFlt1Cutoff, lblFlt1Slope, lblFlt1EnvAmt;
+    Label lblFlt1Cutoff, lblFlt1Q, lblFlt1EnvAmt;
     Label lblFlt1EgAttack, lblFlt1EgDecay, lblFlt1EgSustain, lblFlt1EgRelease;
-    Label lblFlt2Cutoff, lblFlt2Slope, lblFlt2EnvAmt;
+    Label lblFlt2Cutoff, lblFlt2Q, lblFlt2EnvAmt;
     Label lblFlt2EgAttack, lblFlt2EgDecay, lblFlt2EgSustain, lblFlt2EgRelease;
-    FloatParamSlider slFlt1Cutoff, slFlt1Slope, slFlt1EnvAmt;
+    FloatParamSlider slFlt1Cutoff, slFlt1Q, slFlt1EnvAmt;
     FloatParamSlider slFlt1EgAttack, slFlt1EgDecay, slFlt1EgSustain, slFlt1EgRelease;
-    FloatParamSlider slFlt2Cutoff, slFlt2Slope, slFlt2EnvAmt;
+    FloatParamSlider slFlt2Cutoff, slFlt2Q, slFlt2EnvAmt;
     FloatParamSlider slFlt2EgAttack, slFlt2EgDecay, slFlt2EgSustain, slFlt2EgRelease;
 
     Label lblPitchLfoFreq, lblPitchLfoAmount, lblFilterLfoFreq, lblFilterLfoAmount;

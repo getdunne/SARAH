@@ -51,11 +51,11 @@ void SynthVoice::setup (bool pitchBendOnly)
 
     if (!pitchBendOnly)
     {
-        osc1.setFilterParams(0.1f * float(pParams->filter1.cutoff), float(pParams->filter1.dBperOctave));
-        osc2.setFilterParams(0.1f * float(pParams->filter2.cutoff), float(pParams->filter2.dBperOctave));
+        osc1.setFilterParams(0.1f * pParams->filter1.cutoff, pParams->filter1.Q);
+        osc2.setFilterParams(0.1f * pParams->filter2.cutoff, pParams->filter2.Q);
     }
 
-    float masterLevel = float(noteVelocity * pParams->main.masterLevel);
+    float masterLevel = noteVelocity * pParams->main.masterLevel;
     double sampleRateHz = getSampleRate();
     int midiNote = getCurrentlyPlayingNote();
     double pbCents = pitchBendCents();
@@ -65,7 +65,7 @@ void SynthVoice::setup (bool pitchBendOnly)
     if (!pitchBendOnly)
     {
         osc1Level.reset(sampleRateHz, ampEG.isRunning() ? 0.1 : 0.0);
-        osc1Level.setValue(float(1.0 - pParams->main.oscBlend) * masterLevel);
+        osc1Level.setValue((1.0 - pParams->main.oscBlend) * masterLevel);
     }
 
     osc2.setFrequency(sampleRateHz, midiNote + pParams->osc2.pitchOffsetSemitones,
@@ -73,13 +73,13 @@ void SynthVoice::setup (bool pitchBendOnly)
     if (!pitchBendOnly)
     {
         osc2Level.reset(sampleRateHz, ampEG.isRunning() ? 0.1 : 0.0);
-        osc2Level.setValue(float(pParams->main.oscBlend * masterLevel));
+        osc2Level.setValue(pParams->main.oscBlend * masterLevel);
     }
 
     if (!pitchBendOnly)
     {
-        pitchLFO.setFrequency(float(pParams->pitchLFO.freqHz / sampleRateHz));
-        filterLFO.setFrequency(float(pParams->filterLFO.freqHz / sampleRateHz));
+        pitchLFO.setFrequency(pParams->pitchLFO.freqHz / sampleRateHz);
+        filterLFO.setFrequency(pParams->filterLFO.freqHz / sampleRateHz);
 
         ampEG.attackSeconds = pParams->ampEG.attackTimeSeconds;
         ampEG.decaySeconds = pParams->ampEG.decayTimeSeconds;
@@ -192,12 +192,12 @@ void SynthVoice::renderNextBlock(AudioSampleBuffer& outputBuffer, int startSampl
             break;
         }
 
-        float feg1 = flt1EG.getSample() * 0.1f * float(pParams->filter1.envAmount);
-        float feg2 = flt2EG.getSample() * 0.1f * float(pParams->filter2.envAmount);
-        float flfo = filterLFO.getSample() * 0.01f * float(pParams->filterLFO.amount);
-        float peg1 = pitch1EG.getSample() * float(pParams->pitch1EG.sustainLevel) * 100;
-        float peg2 = pitch2EG.getSample() * float(pParams->pitch2EG.sustainLevel) * 100;
-        float plfo = pitchLFO.getSample() * float(pParams->pitchLFO.amount);
+        float feg1 = flt1EG.getSample() * 0.1f * pParams->filter1.envAmount;
+        float feg2 = flt2EG.getSample() * 0.1f * pParams->filter2.envAmount;
+        float flfo = (1.0 + filterLFO.getSample()) * 0.004f * pParams->filterLFO.amount;
+        float peg1 = pitch1EG.getSample() * pParams->pitch1EG.sustainLevel * 100;
+        float peg2 = pitch2EG.getSample() * pParams->pitch2EG.sustainLevel * 100;
+        float plfo = pitchLFO.getSample() * pParams->pitchLFO.amount;
         if (--noteSampleCounter < 0)
         {
             pitchWobble(peg1 + plfo, peg2 + plfo);

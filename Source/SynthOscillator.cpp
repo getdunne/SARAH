@@ -6,7 +6,7 @@ SynthOscillator::SynthOscillator()
     : SynthOscillatorBase()
     , noteNumber(-1)
 {
-    setFilterParams(1.0f, 12.0f);
+    setFilterParams(1.0f, 1.0f);
 }
 
 void SynthOscillator::setFrequency(double sampleRateHz, int midiNoteNumber, double centOffset)
@@ -32,10 +32,11 @@ void SynthOscillator::setFrequency(double sampleRateHz, int midiNoteNumber, doub
     noteNumber = midiNoteNumber;
 }
 
-void SynthOscillator::setFilterParams(float cutoff, float dBPerOctave)
+void SynthOscillator::setFilterParams(float cutoffFraction, float qFactor)
 {
-    filterCutoff = cutoff;
-    filterSlope = dBPerOctave;
+    filterCutoff = cutoffFraction;
+    filterQ = qFactor;
+    filterModel.setup(filterCutoff * 0.5, filterQ);
 }
 
 void SynthOscillator::setFilterCutoffDelta(float fcDelta)
@@ -46,7 +47,7 @@ void SynthOscillator::setFilterCutoffDelta(float fcDelta)
     int maxHarmonicToRetain = int(1.0 / (2.0 * phaseDelta));
     if (maxHarmonicToRetain >= fftSize / 2) maxHarmonicToRetain = fftSize / 2;
 
-    float cutoffHarmonic = (filterCutoff + fcDelta) * fftSize / 2;
+    filterModel.setup((filterCutoff + fcDelta) * 0.5, filterQ);
 
     for (int ip = 1; ip < maxHarmonicToRetain; ip++)
     {
@@ -55,8 +56,8 @@ void SynthOscillator::setFilterCutoffDelta(float fcDelta)
         memcpy(waveTable + ip, fftBuffer + ip, 2 * sizeof(float)); // positive frequency coefficient
         memcpy(waveTable + in, fftBuffer + in, 2 * sizeof(float)); // negative frequency coefficient
 
-        float fv = 1.0f;
-        if (ip > int(cutoffHarmonic)) fv = std::pow(ip / cutoffHarmonic, -filterSlope / 6.0f);
+        // Apply our filter model to simulate resonant filter response
+        float fv = float(filterModel.response(double(ip) / (fftSize / 2)));
         waveTable[ip + 0] *= fv;
         waveTable[ip + 1] *= fv;
         waveTable[in + 0] *= fv;

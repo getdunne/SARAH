@@ -26,8 +26,8 @@ public:
 
     // filters
     struct FilterParams {
-        float cutoff;                        // [0.0, 1.0]
-        float dBperOctave;
+        float cutoff;                       // [0.0, 1.0]
+        float Q;                            // [0.1, 10.0]
         float envAmount;                    // [0.0, 1.0]
     } filter1, filter2;
     

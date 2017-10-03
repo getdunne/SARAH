@@ -20,7 +20,7 @@ void SynthParameters::setDefaultValues()
     ampEG.releaseTimeSeconds = 0.5f;
 
     filter1.cutoff = 1.0f;
-    filter1.dBperOctave = 12.0f;
+    filter1.Q = 1.0f;
     filter1.envAmount = 0.0f;
     filter1EG.attackTimeSeconds = 0.0f;
     filter1EG.decayTimeSeconds = 0.0f;
@@ -28,7 +28,7 @@ void SynthParameters::setDefaultValues()
     filter1EG.releaseTimeSeconds = 0.0f;
 
     filter2.cutoff = 1.0f;
-    filter2.dBperOctave = 12.0f;
+    filter2.Q = 1.0f;
     filter2.envAmount = 0.0f;
     filter2EG.attackTimeSeconds = 0.0f;
     filter2EG.decayTimeSeconds = 0.0f;
@@ -77,7 +77,7 @@ XmlElement* SynthParameters::getXml()
     xml->setAttribute("ampEgReleaseTimeSeconds", ampEG.releaseTimeSeconds);
 
     xml->setAttribute("flt1Cutoff", filter1.cutoff);
-    xml->setAttribute("flt1dBperOctave", filter1.dBperOctave);
+    xml->setAttribute("flt1Q", filter1.Q);
     xml->setAttribute("flt1EnvAmount", filter1.envAmount);
     xml->setAttribute("flt1EgAttackTimeSeconds", filter1EG.attackTimeSeconds);
     xml->setAttribute("flt1EgDecayTimeSeconds", filter1EG.decayTimeSeconds);
@@ -85,7 +85,7 @@ XmlElement* SynthParameters::getXml()
     xml->setAttribute("flt1EgReleaseTimeSeconds", filter1EG.releaseTimeSeconds);
 
     xml->setAttribute("flt2Cutoff", filter2.cutoff);
-    xml->setAttribute("flt2dBperOctave", filter2.dBperOctave);
+    xml->setAttribute("flt2Q", filter2.Q);
     xml->setAttribute("flt2EnvAmount", filter2.envAmount);
     xml->setAttribute("flt2EgAttackTimeSeconds", filter2EG.attackTimeSeconds);
     xml->setAttribute("flt2EgDecayTimeSeconds", filter2EG.decayTimeSeconds);
@@ -126,7 +126,7 @@ void SynthParameters::putXml(XmlElement* xml)
     ampEG.releaseTimeSeconds = (float)xml->getDoubleAttribute("ampEgReleaseTimeSeconds");
 
     filter1.cutoff = (float)xml->getDoubleAttribute("flt1Cutoff");
-    filter1.dBperOctave = (float)xml->getDoubleAttribute("flt1dBperOctave");
+    filter1.Q = (float)xml->getDoubleAttribute("flt1Q");
     filter1.envAmount = (float)xml->getDoubleAttribute("flt1EnvAmount");
     filter1EG.attackTimeSeconds = (float)xml->getDoubleAttribute("flt1EgAttackTimeSeconds");
     filter1EG.decayTimeSeconds = (float)xml->getDoubleAttribute("flt1EgDecayTimeSeconds");
@@ -134,7 +134,7 @@ void SynthParameters::putXml(XmlElement* xml)
     filter1EG.releaseTimeSeconds = (float)xml->getDoubleAttribute("flt1EgReleaseTimeSeconds");
 
     filter2.cutoff = (float)xml->getDoubleAttribute("flt2Cutoff");
-    filter2.dBperOctave = (float)xml->getDoubleAttribute("flt2dBperOctave");
+    filter2.Q = (float)xml->getDoubleAttribute("flt2Q");
     filter2.envAmount = (float)xml->getDoubleAttribute("flt2EnvAmount");
     filter2EG.attackTimeSeconds = (float)xml->getDoubleAttribute("flt2EgAttackTimeSeconds");
     filter2EG.decayTimeSeconds = (float)xml->getDoubleAttribute("flt2EgDecayTimeSeconds");
