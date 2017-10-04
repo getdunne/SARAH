@@ -7,6 +7,8 @@ void MyLookAndFeel::drawRotarySlider(Graphics& g, int x, int y, int width, int h
     const float rotaryStartAngle, const float rotaryEndAngle,
     Slider& slider)
 {
+    ignoreUnused(slider);
+
     const float radius = jmin(width / 2, height / 2) - 10.0f;
     const float centreX = x + width * 0.5f;
     const float centreY = y + height * 0.5f;
@@ -217,14 +219,14 @@ SARAHAudioProcessorEditor::SARAHAudioProcessorEditor (SARAHAudioProcessor& p)
     initSlider(slOsc2PitchEgSustain); slOsc2PitchEgSustain.setRange(-12, 12, 0);
     initSlider(slOsc2PitchEgRelease); slOsc2PitchEgRelease.setRange(0, 10, 0);
     initSlider(slFlt1Cutoff); slFlt1Cutoff.setRange(0, 100, 0); slFlt1Cutoff.setScale(100);
-    initSlider(slFlt1Q); slFlt1Q.setRange(0.1, 15, 0);
+    initSlider(slFlt1Q); slFlt1Q.setRange(0.1, 6, 0);
     initSlider(slFlt1EnvAmt); slFlt1EnvAmt.setRange(0, 100, 0); slFlt1EnvAmt.setScale(100);
     initSlider(slFlt1EgAttack); slFlt1EgAttack.setRange(0, 10, 0);
     initSlider(slFlt1EgDecay); slFlt1EgDecay.setRange(0, 10, 0);
     initSlider(slFlt1EgSustain); slFlt1EgSustain.setRange(0, 100, 0); slFlt1EgSustain.setScale(100);
     initSlider(slFlt1EgRelease); slFlt1EgRelease.setRange(0, 10, 0);
     initSlider(slFlt2Cutoff); slFlt2Cutoff.setRange(0, 100, 0); slFlt2Cutoff.setScale(100);
-    initSlider(slFlt2Q); slFlt2Q.setRange(0.1, 15, 0);
+    initSlider(slFlt2Q); slFlt2Q.setRange(0.1, 6, 0);
     initSlider(slFlt2EnvAmt); slFlt2EnvAmt.setRange(0, 100, 0); slFlt2EnvAmt.setScale(100);
     initSlider(slFlt2EgAttack); slFlt2EgAttack.setRange(0, 10, 0);
     initSlider(slFlt2EgDecay); slFlt2EgDecay.setRange(0, 10, 0);
