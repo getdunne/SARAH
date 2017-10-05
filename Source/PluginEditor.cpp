@@ -245,6 +245,41 @@ SARAHAudioProcessorEditor::SARAHAudioProcessorEditor (SARAHAudioProcessor& p)
     initSlider(slAmpEgSustain); slAmpEgSustain.setRange(0, 100, 0); slAmpEgSustain.setScale(100);
     initSlider(slAmpEgRelease); slAmpEgRelease.setRange(0, 10, 0);
 
+    slOsc1Pitch.setDoubleClickReturnValue(true, 0.0);
+    slOsc2Pitch.setDoubleClickReturnValue(true, 0.0);
+    slOsc1Detune.setDoubleClickReturnValue(true, 0.0);
+    slOsc2Detune.setDoubleClickReturnValue(true, 0.0);
+    slOsc1PitchEgAttack.setDoubleClickReturnValue(true, 0.0);
+    slOsc1PitchEgSustain.setDoubleClickReturnValue(true, 0.0);
+    slOsc1PitchEgRelease.setDoubleClickReturnValue(true, 0.0);
+    slOsc2PitchEgAttack.setDoubleClickReturnValue(true, 0.0);
+    slOsc2PitchEgSustain.setDoubleClickReturnValue(true, 0.0);
+    slOsc2PitchEgRelease.setDoubleClickReturnValue(true, 0.0);
+    slFlt1Cutoff.setDoubleClickReturnValue(true, 1.0);
+    slFlt1Q.setDoubleClickReturnValue(true, 1.0);
+    slFlt1EgAttack.setDoubleClickReturnValue(true, 0.0);
+    slFlt1EgDecay.setDoubleClickReturnValue(true, 0.0);
+    slFlt1EgSustain.setDoubleClickReturnValue(true, 1.0);
+    slFlt2EgRelease.setDoubleClickReturnValue(true, 0.0);
+    slFlt2Cutoff.setDoubleClickReturnValue(true, 1.0);
+    slFlt2Q.setDoubleClickReturnValue(true, 1.0);
+    slFlt2EgAttack.setDoubleClickReturnValue(true, 0.0);
+    slFlt2EgDecay.setDoubleClickReturnValue(true, 0.0);
+    slFlt2EgSustain.setDoubleClickReturnValue(true, 1.0);
+    slFlt2EgRelease.setDoubleClickReturnValue(true, 0.0);
+    slPitchLfoFreq.setDoubleClickReturnValue(true, 5.0);
+    slPitchLfoAmount.setDoubleClickReturnValue(true, 0.0);
+    slPitchLfoFreq.setDoubleClickReturnValue(true, 5.0);
+    slFilterLfoAmount.setDoubleClickReturnValue(true, 0.0);
+    slMasterVol.setDoubleClickReturnValue(true, 0.15);
+    slOscBal.setDoubleClickReturnValue(true, 0.5);
+    slPitchBendUp.setDoubleClickReturnValue(true, 2.0);
+    slPitchBendDown.setDoubleClickReturnValue(true, 2.0);
+    slAmpEgAttack.setDoubleClickReturnValue(true, 0.1);
+    slAmpEgDecay.setDoubleClickReturnValue(true, 0.1);
+    slAmpEgSustain.setDoubleClickReturnValue(true, 0.8);
+    slAmpEgRelease.setDoubleClickReturnValue(true, 0.5);
+
     changeListenerCallback(0);  // set all control pointers
 }
 

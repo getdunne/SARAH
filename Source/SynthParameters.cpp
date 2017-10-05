@@ -9,10 +9,10 @@ void SynthParameters::setDefaultValues()
     main.pitchBendDownSemitones = 2;
 
     osc1.pitchOffsetSemitones = 0;
-    osc1.detuneOffsetCents = -10.0f;
+    osc1.detuneOffsetCents = 0.0f;
 
     osc2.pitchOffsetSemitones = 0;
-    osc2.detuneOffsetCents = +10.0f;
+    osc2.detuneOffsetCents = 0.0f;
 
     ampEG.attackTimeSeconds = 0.1f;
     ampEG.decayTimeSeconds = 0.1f;
