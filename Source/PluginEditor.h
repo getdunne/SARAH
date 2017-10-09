@@ -74,7 +74,7 @@ public:
     void paint (Graphics&) override;
     void resized() override;
 
-    virtual void changeListenerCallback(ChangeBroadcaster*);
+    virtual void changeListenerCallback(ChangeBroadcaster*) override;
     void comboBoxChanged(ComboBox*) override;
     void sliderValueChanged(Slider*) override;
 

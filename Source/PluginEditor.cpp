@@ -293,13 +293,11 @@ void SARAHAudioProcessorEditor::PaintSarahLogo(Graphics& g)
     // basic letter structure
     static int width = 7;
     static int spacing = 2;
-    static int halfHeight = 3;
     static int r_indent = 2;
 
     // see resized() below
     const int topOffset1 = 12;
     const int largeGroupHeight = 180;
-    const int middleGap = 60;
 
     // vertical layout
     const int logoTopOffset = 16;

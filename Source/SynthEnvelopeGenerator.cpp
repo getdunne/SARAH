@@ -2,11 +2,11 @@
 
 SynthEnvelopeGenerator::SynthEnvelopeGenerator()
     : sampleRateHz(44100)
+    , segment(EG_Segment::idle)
     , attackSeconds(0.01)
     , decaySeconds(0.1)
     , releaseSeconds(0.5)
     , sustainLevel(0.5)
-    , segment(EG_Segment::idle)
 {
     interpolator.setValue(0.0);
     interpolator.reset(sampleRateHz, 0.0);
