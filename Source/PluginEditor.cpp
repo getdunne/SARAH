@@ -202,7 +202,7 @@ SARAHAudioProcessorEditor::SARAHAudioProcessorEditor (SARAHAudioProcessor& p)
     auto initSlider = [this](Slider& slider)
     {
         if (showControls) addAndMakeVisible(slider);
-        slider.setSliderStyle(Slider::Rotary);
+        slider.setSliderStyle(Slider::RotaryHorizontalVerticalDrag);
         slider.setTextBoxStyle(Slider::NoTextBox, false, 0, 0);
         slider.setPopupDisplayEnabled(true, true, 0);
         slider.addListener(this);
