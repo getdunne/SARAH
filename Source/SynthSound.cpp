@@ -1,4 +1,3 @@
-#pragma once
 #include "SynthSound.h"
 #include "Synth.h"
 
