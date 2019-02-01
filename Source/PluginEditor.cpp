@@ -305,6 +305,7 @@ SARAHAudioProcessorEditor::SARAHAudioProcessorEditor (SARAHAudioProcessor& p)
 
 SARAHAudioProcessorEditor::~SARAHAudioProcessorEditor()
 {
+    setLookAndFeel(nullptr);
     processor.removeChangeListener(this);
 }
 

@@ -47,10 +47,8 @@ void SynthOscillatorBase::Initialize()
 
 void SynthOscillatorBase::Cleanup()
 {
-#ifndef JUCE_MAC
     delete forwardFFT;
     delete inverseFFT;
-#endif
 }
 
 float SynthOscillatorBase::sineTable[fftSize];

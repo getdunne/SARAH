@@ -10,7 +10,7 @@
               pluginCode="Pjit" pluginChannelConfigs="{0,2}" pluginIsSynth="1"
               pluginWantsMidiIn="1" pluginProducesMidiOut="0" pluginIsMidiEffectPlugin="0"
               pluginEditorRequiresKeys="0" pluginAUExportPrefix="SarahAU" pluginRTASCategory=""
-              aaxIdentifier="com.yourcompany.SARAH" pluginAAXCategory="2" jucerVersion="5.3.2"
+              aaxIdentifier="com.yourcompany.SARAH" pluginAAXCategory="2" jucerVersion="5.4.1"
               companyName="your company" companyWebsite="www.yourcompany.com"
               companyEmail="info@yourcompany.com" binaryDataNamespace="" pluginFormats="buildVST,buildAU"
               pluginCharacteristicsValue="pluginIsSynth,pluginWantsMidiIn">
