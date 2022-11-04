@@ -165,31 +165,27 @@ void SARAHAudioProcessor::getStateInformation (MemoryBlock& destData)
 
 void SARAHAudioProcessor::setStateInformation (const void* data, int sizeInBytes)
 {
-    ScopedPointer<XmlElement> xml = getXmlFromBinary(data, sizeInBytes);
-    XmlElement* xprogs = xml->getFirstChildElement();
-    if (xprogs->hasTagName(String("programs")))
+    auto xml = getXmlFromBinary(data, sizeInBytes);
+    XmlElement* xprogs = xml.get()->getFirstChildElement();
+    int i = 0;
+    for (auto* xpr : xprogs->getChildWithTagNameIterator ("programs"))
     {
-        int i = 0;
-        forEachXmlChildElement(*xprogs, xpr)
-        {
-            programBank[i].setDefaultValues();
-            programBank[i].putXml(xpr);
-            i++;
-        }
+        programBank[i].setDefaultValues();
+        programBank[i].putXml(xpr);
+        i++;
     }
     setCurrentProgram(xml->getIntAttribute(String("currentProgram"), 0));
 }
 
 void SARAHAudioProcessor::getCurrentProgramStateInformation(MemoryBlock& destData)
 {
-    ScopedPointer<XmlElement> xml = programBank[currentProgram].getXml();
-    copyXmlToBinary(*xml, destData);
+    copyXmlToBinary(*programBank[currentProgram].getXml(), destData);
 }
 
 void SARAHAudioProcessor::setCurrentProgramStateInformation(const void* data, int sizeInBytes)
 {
-    ScopedPointer<XmlElement> xml = getXmlFromBinary(data, sizeInBytes);
-    programBank[currentProgram].putXml(xml);
+    auto xml = getXmlFromBinary(data, sizeInBytes);
+    programBank[currentProgram].putXml(xml.get());
     sendChangeMessage();
 }
 
