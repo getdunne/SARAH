@@ -33,7 +33,7 @@ void SynthOscillatorBase::Initialize()
     {
         float phi = float(i) / fftSize;
 
-        sineTable[i] = std::sin(2.0f * float_Pi * phi);
+        sineTable[i] = std::sin(2.0f * MathConstants<float>::pi * phi);
 
         fftWave[SynthWaveform::kTriangle][i] = 2.0f * (0.5f - std::fabs(phi - 0.5f)) - 1.0f;
         fftWave[SynthWaveform::kSquare][i] = (phi <= 0.5f) ? 1.0f : -1.0f;

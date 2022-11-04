@@ -57,6 +57,8 @@ float SynthLFO::getSample()
     case SynthWaveform::kSawtooth:
         sample = 2.0f * phase - 1.0f;
         break;
+    default:
+        break;
     }
 
     phase += phaseDelta;
